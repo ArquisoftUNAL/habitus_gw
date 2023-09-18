@@ -6,7 +6,7 @@ const {
   GraphQLSchema,
 } = require("graphql");
 const userData = require("../MOCK_DATA.json");
-const UserType = require("./TypeDefs/UserType");
+const UserType = require("./UserType");
 const axios = require("axios");
 
 const RootQuery = new GraphQLObjectType({
@@ -19,11 +19,11 @@ const RootQuery = new GraphQLObjectType({
         if (args.id) {
           const headers = {
             "x-auth-token":
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTA3YmNmMDZhMWFlMWFkOTZlMzc4ODAiLCJfaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY5NTAwNTkzNiwiZXhwIjoxNjk1MDQ5MTM2fQ.Hb2ADAssYwNVT0Z3w_tB6bszOHaqga7it68bZpYzfaM",
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTA3Y2Q1OTYxYWQ5N2I4ZmZiMzUwMTUiLCJfaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY5NTAxMDEzNywiZXhwIjoxNjk1MDUzMzM3fQ.Rdyd5Lovm8zFLcJ-mg3DDVRGD09Za_vE6e0Jf_Rmcso",
           };
           // Include axios async call
           const response = await axios.get(
-            "http://localhost:3000/api/users/6507bcf06a1ae1ad96e37880",
+            "http://localhost:3000/users/me",
             {
               headers,
             }
