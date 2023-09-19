@@ -1,15 +1,30 @@
-const express = require("express");
-const app = express();
-const port = 4000;
-const { graphqlHTTP } = require("express-graphql");
-const schema = require("./schema");
+const { ApolloServer } = require('@apollo/server');
+const { startStandaloneServer } = require('@apollo/server/standalone');
+const { typeDefs, resolvers } = require('./schema');
+const HabitsAPI = require('./habits_ms/api/habits.api');
 
-app.use(
-  "/graphql",
-  graphqlHTTP({
-    schema,
-    graphiql: true,
-  })
-);
+const dotenv = require('dotenv');
+dotenv.config();
 
-app.listen(port, () => console.log(`Server listening on port ${port}!`));
+const PORT = process.env.PORT || 4000;
+
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+});
+
+(async () => {
+    const { url } = await startStandaloneServer(server, {
+        listen: { port: PORT },
+        context: async () => {
+            const { cache } = server;
+            return {
+                dataSources: {
+                    habitsAPI: new HabitsAPI({ cache })
+                }
+            }
+        }
+    });
+
+    console.log(`🚀 Server ready at ${url}`);
+})();
