@@ -1,14 +1,27 @@
 const BASE_HABIT_DATA = "habitdata";
 
-async function getHabitdataById(page = 1, perPage = 10) {
+async function getHabitdataById(id) {
     const data = await this.get(
         `${BASE_HABIT_DATA}`, {
-        categories_page: page,
-        categories_per_page: perPage
-    }
-    );
+        params: {
+            categories_page: page,
+            categories_per_page: perPage
+        }
+    });
 
-    return data.categories;
+    return data.data;
+}
+
+async function getRecurrenceData(recurrence, page = 1, perPage = 10) {
+    const data = await this.get(
+        `${BASE_HABIT_DATA}/recurrence/${encodeURIComponent(recurrence)}`, {
+        params: {
+            recurrences_page: page,
+            recurrences_per_page: perPage
+        }
+    });
+
+    return data.data;
 }
 
 async function addHabitdata(recurrence) {

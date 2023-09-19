@@ -1,21 +1,25 @@
 const resolvers = {
     Query: {
-        habits: async (_, { usrId }, { dataSources }) => {
-            return dataSources.habitsAPI.getUserHabits(usrId);
+        habitsByUser: async (_, { id, mode, page, per_page }, { dataSources }) => {
+            return dataSources.habitsAPI.getUserHabits(id, page, per_page, mode);
         },
 
-        habitById: async (_, { habId }, { dataSources }) => {
-            return dataSources.habitsAPI.getHabit(habId);
+        habitById: async (_, { id, mode }, { dataSources }) => {
+            return dataSources.habitsAPI.getHabit(id, mode);
+        },
+
+        habitsByCategory: async (_, { id, page, per_page }, { dataSources }) => {
+            return dataSources.habitsAPI.getCategoryHabits(id, page, per_page);
         }
     },
 
     Mutation: {
-        addHabit: async (_, { habitData }, { dataSources }) => {
-            return dataSources.habitsAPI.addHabit(habitData);
+        addHabit: async (_, { habit }, { dataSources }) => {
+            return dataSources.habitsAPI.addHabit(habit);
         },
 
-        updateHabit: async (_, { id, habitData }, { dataSources }) => {
-            return dataSources.habitsAPI.updateHabit(id, habitData);
+        updateHabit: async (_, { id, habit }, { dataSources }) => {
+            return dataSources.habitsAPI.updateHabit(id, habit);
         },
 
         deleteHabit: async (_, { id }, { dataSources }) => {

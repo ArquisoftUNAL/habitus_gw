@@ -9,6 +9,7 @@ const typeDefs = `#graphql
         hab_is_yn: Boolean!
         hab_is_favorite: Boolean!
         hab_color: String!
+        recurrences: [Recurrence]
     }
 
     input HabitCreate {
@@ -36,8 +37,9 @@ const typeDefs = `#graphql
     }
 
     extend type Query {
-        habits(usrId : String!): [Habit]
-        habitById(habId: String!): Habit
+        habitsByUser(id : String!, mode : String, page : Int, per_page : Int): [Habit]
+        habitById(id: String!, mode : String): Habit
+        habitsByCategory(id: String!, page : Int, per_page : Int): [Habit]
     }
 
     extend type Mutation {

@@ -1,8 +1,12 @@
 const resolvers = {
     Query: {
-        recurrenceById: async (_, { recId }, { dataSources }) => {
-            return dataSources.habitsAPI.getRecurrenceById(recId);
-        }
+        recurrenceById: async (_, { id, mode }, { dataSources }) => {
+            return dataSources.habitsAPI.getRecurrenceById(id, mode);
+        },
+
+        recurrencesByHabit: async (_, { id, page, per_page }, { dataSources }) => {
+            return dataSources.habitsAPI.getHabitRecurrences(id, page, per_page);
+        },
     },
 
     Mutation: {

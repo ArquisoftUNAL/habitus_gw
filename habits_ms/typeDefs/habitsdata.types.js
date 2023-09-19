@@ -19,7 +19,8 @@ const typeDefs = `#graphql
     }
 
     extend type Query {
-        habitdataById(datId: String!): HabitData
+        habitdataById(id: String!): HabitData
+        habitdataByRecurrence(id: String!, page: Int, per_page: Int): [HabitData]
     }
 
     extend type Mutation {

@@ -5,6 +5,7 @@ const typeDefs = `#graphql
         hab_rec_freq_type: String!
         hab_rec_goal: String!
         hab_rec_freq_data: String!
+        data: [HabitData]
     }
 
     input RecurrenceCreate {
@@ -22,7 +23,8 @@ const typeDefs = `#graphql
     }
 
     extend type Query {
-        recurrenceById(recId: String!): Recurrence
+        recurrenceById(id: String!, mode : String): Recurrence
+        recurrencesByHabit(id: String!, page: Int, per_page: Int): [Recurrence]
     }
 
     extend type Mutation {

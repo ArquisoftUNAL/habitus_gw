@@ -1,7 +1,11 @@
 const resolvers = {
     Query: {
-        habitdataById: async (_, { recId }, { dataSources }) => {
-            return dataSources.habitsAPI.getHabitdataById(recId);
+        habitdataById: async (_, { id }, { dataSources }) => {
+            return dataSources.habitsAPI.getHabitdataById(id);
+        },
+
+        habitdataByRecurrence: async (_, { id, page, per_page }, { dataSources }) => {
+            return dataSources.habitsAPI.getRecurrenceData(id, page, per_page);
         }
     },
 

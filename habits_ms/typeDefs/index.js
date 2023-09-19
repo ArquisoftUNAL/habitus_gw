@@ -2,8 +2,9 @@ const habitsTypeDefs = require('./habits.types');
 const categoriesTypeDefs = require('./categories.types');
 const recurrencesTypeDefs = require('./recurrences.types');
 const habitsDataTypeDefs = require('./habitsdata.types');
+const eventsTypeDefs = require('./events.types');
 
-const typeDefs = `
+const typeDefs = `#graphql
     type CreationResponse {
         message: String!
         id: String!
@@ -17,6 +18,7 @@ const typeDefs = `
     ${categoriesTypeDefs}
     ${recurrencesTypeDefs}
     ${habitsDataTypeDefs}
+    ${eventsTypeDefs}
 `;
 
 module.exports = typeDefs;

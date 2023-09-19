@@ -13,16 +13,16 @@ const typeDefs = `#graphql
     }
 
     extend type Query {
-        categories: [Category]
-        categoryById(catId: String!): Category
+        categories(page: Int, per_page: Int): [Category]
+        categoryById(id: String!): Category
     }
 
     extend type Mutation {
         addCategory(category: CategoryCreate!): CreationResponse
 
-        updateCategory(catId: String!, category: CategoryUpdate!): GeneralResponse
+        updateCategory(id: String!, category: CategoryUpdate!): GeneralResponse
 
-        deleteCategory(catId: String!): GeneralResponse
+        deleteCategory(id: String!): GeneralResponse
     }
 `;
 

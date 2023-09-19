@@ -15,6 +15,7 @@ const typeDefs = `#graphql
 
     extend type Query {
         getUserById(id: Int!): [User]
+        
     }
 
     extend type Mutation {

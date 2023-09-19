@@ -9,8 +9,10 @@ async function getCategory(id) {
 async function getAllCategories(page = 1, perPage = 10) {
     const data = await this.get(
         `${BASE_CATEGORIES_PATH}`, {
-        categories_page: page,
-        categories_per_page: perPage
+        params: {
+            categories_page: page,
+            categories_per_page: perPage
+        }
     }
     );
 

@@ -1,25 +1,25 @@
 const resolvers = {
     Query: {
-        categories: async (_, __, { dataSources }) => {
-            return dataSources.habitsAPI.getAllCategories();
+        categories: async (_, { page, per_page }, { dataSources }) => {
+            return dataSources.habitsAPI.getAllCategories(page, per_page);
         },
 
-        categoryById: async (_, { catId }, { dataSources }) => {
-            return dataSources.habitsAPI.getCategoryById(catId);
+        categoryById: async (_, { id }, { dataSources }) => {
+            return dataSources.habitsAPI.getCategoryById(id);
         }
     },
 
     Mutation: {
-        addCategory: async (_, { categoryData }, { dataSources }) => {
-            return dataSources.habitsAPI.addCategory(categoryData);
+        addCategory: async (_, { category }, { dataSources }) => {
+            return dataSources.habitsAPI.addCategory(category);
         },
 
-        updateCategory: async (_, { catId, categoryData }, { dataSources }) => {
-            return dataSources.habitsAPI.updateCategory(catId, categoryData);
+        updateCategory: async (_, { id, category }, { dataSources }) => {
+            return dataSources.habitsAPI.updateCategory(id, category);
         },
 
-        deleteHabit: async (_, { catId }, { dataSources }) => {
-            return dataSources.habitsAPI.deleteCategory(catId);
+        deleteHabit: async (_, { id }, { dataSources }) => {
+            return dataSources.habitsAPI.deleteCategory(id);
         }
     }
 };

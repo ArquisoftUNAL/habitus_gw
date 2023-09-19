@@ -1,14 +1,33 @@
 const BASE_RECURRENCES_PATH = "recurrences";
 
-async function getRecurrenceById(page = 1, perPage = 10) {
-    const data = await this.get(
-        `${BASE_RECURRENCES_PATH}`, {
-        recurrences_page: page,
-        recurrences_per_page: perPage
+async function getRecurrenceById(id, mode = "simple") {
+
+    let base_url = `${BASE_RECURRENCES_PATH}/${encodeURIComponent(id)}`;
+
+    if (mode === "data") {
+        base_url += "/data";
     }
+
+    const data = await this.get(
+        base_url
     );
 
     return data.recurrence;
+}
+
+async function getHabitRecurrences(habit, page = 1, perPage = 10) {
+
+    let base_url = `${BASE_RECURRENCES_PATH}/habit/${encodeURIComponent(habit)}`;
+
+    const data = await this.get(
+        base_url, {
+        params: {
+            recurrences_page: page,
+            recurrences_per_page: perPage
+        }
+    });
+
+    return data.recurrences;
 }
 
 async function addRecurrence(recurrence) {
@@ -25,6 +44,7 @@ async function deleteRecurrence(id) {
 
 module.exports = (HabitsAPI) => {
     HabitsAPI.prototype.getRecurrenceById = getRecurrenceById;
+    HabitsAPI.prototype.getHabitRecurrences = getHabitRecurrences;
     HabitsAPI.prototype.addRecurrence = addRecurrence;
     HabitsAPI.prototype.updateRecurrence = updateRecurrence;
     HabitsAPI.prototype.deleteRecurrence = deleteRecurrence;
