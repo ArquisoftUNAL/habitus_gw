@@ -1,4 +1,7 @@
 const habitsTypeDefs = require('./habits.types');
+const categoriesTypeDefs = require('./categories.types');
+const recurrencesTypeDefs = require('./recurrences.types');
+const habitsDataTypeDefs = require('./habitsdata.types');
 
 const typeDefs = `
     type CreationResponse {
@@ -11,6 +14,9 @@ const typeDefs = `
     }
 
     ${habitsTypeDefs}
+    ${categoriesTypeDefs}
+    ${recurrencesTypeDefs}
+    ${habitsDataTypeDefs}
 `;
 
 module.exports = typeDefs;

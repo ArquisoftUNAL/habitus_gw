@@ -1,11 +1,20 @@
 const habitsResolver = require('./habits.resolver');
+const categoriesResolver = require('./categories.resolver');
+const recurrencesResolver = require('./recurrences.resolver');
+const habitsDataResolver = require('./habitsdata.resolver');
 
 const response = {
     Query: {
-        ...habitsResolver.Query
+        ...habitsResolver.Query,
+        ...categoriesResolver.Query,
+        ...recurrencesResolver.Query,
+        ...habitsDataResolver.Query
     },
     Mutation: {
-        ...habitsResolver.Mutation
+        ...habitsResolver.Mutation,
+        ...categoriesResolver.Mutation,
+        ...recurrencesResolver.Mutation,
+        ...habitsDataResolver.Mutation
     }
 };
 

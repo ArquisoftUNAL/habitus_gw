@@ -1,7 +1,9 @@
 const BASE_HABITS_PATH = "habits";
 
 async function getHabit(id) {
-    return this.get(`${BASE_HABITS_PATH}/${encodeURIComponent(id)}`);
+    return this.get(
+        `${BASE_HABITS_PATH}/${encodeURIComponent(id)}`
+    ).habit;
 }
 
 async function getUserHabits(user, page = 1, perPage = 10) {
