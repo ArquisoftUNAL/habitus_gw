@@ -1,4 +1,5 @@
 const habitsMsTypesDefs = require('./../habits_ms/typeDefs');
+const usersMsTypesDefs = require('./../users_ms/typeDefs');
 
 const root = `#graphql
     type Query {
@@ -10,6 +11,6 @@ const root = `#graphql
     }
 `;
 
-const typeDefs = [root, habitsMsTypesDefs];
+const typeDefs = [root, habitsMsTypesDefs, usersMsTypesDefs];
 
 module.exports = typeDefs;
