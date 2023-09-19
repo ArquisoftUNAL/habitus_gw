@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const port = 4000;
 const { graphqlHTTP } = require("express-graphql");
-const schema = require("./users_ms/index");
+const schema = require("./schema");
 
 app.use(
   "/graphql",
