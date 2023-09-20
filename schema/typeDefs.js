@@ -1,7 +1,11 @@
 const habitsMsTypesDefs = require('./../habits_ms/typeDefs');
 const usersMsTypesDefs = require('./../users_ms/typeDefs');
+const statisticsMsTypesDefs = require('./../statistics_ms/typeDefs');
 
 const root = `#graphql
+
+    scalar JSONObject
+    
     type Query {
         _empty: String
     }
@@ -11,6 +15,6 @@ const root = `#graphql
     }
 `;
 
-const typeDefs = [root, habitsMsTypesDefs, usersMsTypesDefs];
+const typeDefs = [root, habitsMsTypesDefs, usersMsTypesDefs, statisticsMsTypesDefs];
 
 module.exports = typeDefs;
