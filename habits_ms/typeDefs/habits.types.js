@@ -9,18 +9,21 @@ const typeDefs = `#graphql
         hab_is_yn: Boolean!
         hab_is_favorite: Boolean!
         hab_color: String!
-        recurrences: [Recurrence]
+        hab_units: String!
+        hab_goal: Float!
+        hab_freq_type: String!
+        data: [HabitData]
     }
 
     input HabitCreate {
         name: String!
         description: String!
         is_favorite: Boolean!
-        kind: String!
         is_yn: Boolean!
         color: String!
         units: String!
-        user_id: String!
+        goal: Float!
+        frequency_type: String!
         category: String!
     }
 
@@ -28,16 +31,16 @@ const typeDefs = `#graphql
         name: String
         description: String
         is_favorite: Boolean
-        kind: String
         is_yn: Boolean
         color: String
         units: String
-        user_id: String
+        goal: Float!
+        frequency_type: String!
         category: String
     }
 
     extend type Query {
-        habitsByUser(id : String!, mode : String, page : Int, per_page : Int): [Habit]
+        habitsByUser(mode : String, page : Int, per_page : Int): [Habit]
         habitById(id: String!, mode : String): Habit
         habitsByCategory(id: String!, page : Int, per_page : Int): [Habit]
     }

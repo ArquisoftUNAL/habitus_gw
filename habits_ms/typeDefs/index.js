@@ -1,6 +1,5 @@
 const habitsTypeDefs = require('./habits.types');
 const categoriesTypeDefs = require('./categories.types');
-const recurrencesTypeDefs = require('./recurrences.types');
 const habitsDataTypeDefs = require('./habitsdata.types');
 const eventsTypeDefs = require('./events.types');
 
@@ -16,7 +15,6 @@ const typeDefs = `#graphql
 
     ${habitsTypeDefs}
     ${categoriesTypeDefs}
-    ${recurrencesTypeDefs}
     ${habitsDataTypeDefs}
     ${eventsTypeDefs}
 `;

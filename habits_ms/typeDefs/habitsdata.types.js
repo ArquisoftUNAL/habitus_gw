@@ -3,13 +3,13 @@ const typeDefs = `#graphql
         hab_dat_id: String!
         hab_dat_amount: String!
         hab_dat_collected_at: String!
-        hab_rec_id: String!
+        hab_id: String!
     }
 
     input HabitDataCreate {
         amount: Float!
-        collected_at: String!
-        recurrence_id: String!
+        collected_at: String
+        habit_id: String!
     }
 
     input HabitDataUpdate {
@@ -20,7 +20,8 @@ const typeDefs = `#graphql
 
     extend type Query {
         habitdataById(id: String!): HabitData
-        habitdataByRecurrence(id: String!, page: Int, per_page: Int): [HabitData]
+        habitdataByHabit(id: String!, page: Int, per_page: Int): [HabitData]
+        habitdataByUser(page: Int, per_page: Int): [HabitData]
     }
 
     extend type Mutation {

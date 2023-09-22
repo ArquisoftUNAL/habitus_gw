@@ -14,7 +14,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query ExampleQuery {\r\n  habitsByUser(id: \"edgar\") {\r\n    hab_color\r\n  }\r\n  \r\n  categories {\r\n      cat_name\r\n  }\r\n\r\n  eventsWithHabits(\r\n      id : \"edgar\",\r\n      start_date: \"2023-09-18\",\r\n      end_date: \"2024-09-30\"\r\n    ) {\r\n      date\r\n  }\r\n}\r\n",
+						"query": "query ExampleQuery {\r\n  habitsByUser {\r\n      hab_id\r\n  }\r\n}\r\n",
 						"variables": ""
 					}
 				},
@@ -90,6 +90,93 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"data\": {\n        \"habitsByUser\": [\n            {\n                \"hab_color\": \"abcdef\"\n            },\n            {\n                \"hab_color\": \"abcdef\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"cat_name\": \"Test Category\"\n            },\n            {\n                \"cat_name\": \"Test Category\"\n            },\n            {\n                \"cat_name\": \"olade2\"\n            }\n        ],\n        \"eventsWithHabits\": [\n            {\n                \"date\": \"2023-10-27\"\n            },\n            {\n                \"date\": \"2023-11-10\"\n            },\n            {\n                \"date\": \"2023-11-24\"\n            },\n            {\n                \"date\": \"2023-12-08\"\n            },\n            {\n                \"date\": \"2023-12-22\"\n            },\n            {\n                \"date\": \"2024-01-05\"\n            },\n            {\n                \"date\": \"2024-01-19\"\n            },\n            {\n                \"date\": \"2024-02-02\"\n            },\n            {\n                \"date\": \"2024-02-16\"\n            },\n            {\n                \"date\": \"2024-03-01\"\n            },\n            {\n                \"date\": \"2024-03-15\"\n            },\n            {\n                \"date\": \"2024-03-29\"\n            },\n            {\n                \"date\": \"2024-04-12\"\n            },\n            {\n                \"date\": \"2024-04-26\"\n            },\n            {\n                \"date\": \"2024-05-10\"\n            },\n            {\n                \"date\": \"2024-05-24\"\n            },\n            {\n                \"date\": \"2024-06-07\"\n            },\n            {\n                \"date\": \"2024-06-21\"\n            },\n            {\n                \"date\": \"2024-07-05\"\n            },\n            {\n                \"date\": \"2024-07-19\"\n            },\n            {\n                \"date\": \"2024-08-02\"\n            },\n            {\n                \"date\": \"2024-08-16\"\n            },\n            {\n                \"date\": \"2024-08-30\"\n            },\n            {\n                \"date\": \"2024-09-13\"\n            },\n            {\n                \"date\": \"2024-09-27\"\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Create habits",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation MyMutation {\r\n    addHabit (\r\n        habit: {\r\n            name: \"fafds\",\r\n            description: \"afas\",\r\n            is_favorite: true,\r\n            is_yn: true,\r\n            color: \"fdsawe\",\r\n            units: \"meters\",\r\n            goal: 1000,\r\n            frequency_type: \"weekly\",\r\n            category: \"7d792dcc-b73a-48dc-bf8d-65b7e846884d\"\r\n        }\r\n    ) {\r\n        id\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:4000",
+					"host": [
+						"localhost"
+					],
+					"port": "4000"
+				}
+			},
+			"response": [
+				{
+					"name": "Create habits",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation MyMutation {\r\n    addHabit (\r\n        habit: {\r\n            name: \"fafds\",\r\n            description: \"afas\",\r\n            is_favorite: true,\r\n            is_yn: true,\r\n            color: \"fdsawe\",\r\n            units: \"meters\",\r\n            goal: 1000,\r\n            frequency_type: \"weekly\",\r\n            category: \"7d792dcc-b73a-48dc-bf8d-65b7e846884d\"\r\n        }\r\n    ) {\r\n        id\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4000",
+							"host": [
+								"localhost"
+							],
+							"port": "4000"
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-store"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "68"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"44-aim6qrZ53lVHxZuCOT8r0uMtS6U\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 22 Sep 2023 02:38:44 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"addHabit\": {\n            \"id\": \"30102ab7-f75e-429a-a23c-a5bb22d37f5b\"\n        }\n    }\n}"
 				}
 			]
 		}

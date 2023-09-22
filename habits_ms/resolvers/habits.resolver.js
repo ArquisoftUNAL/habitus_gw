@@ -1,7 +1,7 @@
 const resolvers = {
     Query: {
-        habitsByUser: async (_, { id, mode, page, per_page }, { dataSources }) => {
-            return dataSources.habitsAPI.getUserHabits(id, page, per_page, mode);
+        habitsByUser: async (_, { mode, page, per_page }, { dataSources }) => {
+            return dataSources.habitsAPI.getUserHabits(page, per_page, mode);
         },
 
         habitById: async (_, { id, mode }, { dataSources }) => {

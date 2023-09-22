@@ -4,8 +4,12 @@ const resolvers = {
             return dataSources.habitsAPI.getHabitdataById(id);
         },
 
-        habitdataByRecurrence: async (_, { id, page, per_page }, { dataSources }) => {
-            return dataSources.habitsAPI.getRecurrenceData(id, page, per_page);
+        habitdataByHabit: async (_, { id, page, per_page }, { dataSources }) => {
+            return dataSources.habitsAPI.getHabiteData(id, page, per_page);
+        },
+
+        habitdataByUser: async (_, { page, per_page }, { dataSources }) => {
+            return dataSources.habitsAPI.getUsertData(page, per_page);
         }
     },
 
@@ -14,12 +18,12 @@ const resolvers = {
             return dataSources.habitsAPI.addHabitdata(habitdataData);
         },
 
-        updateHabitdata: async (_, { recId, habitdataData }, { dataSources }) => {
-            return dataSources.habitsAPI.updateHabitdata(recId, habitdataData);
+        updateHabitdata: async (_, { datId, habitdataData }, { dataSources }) => {
+            return dataSources.habitsAPI.updateHabitdata(datId, habitdataData);
         },
 
-        deleteHabitdata: async (_, { recId }, { dataSources }) => {
-            return dataSources.habitsAPI.deleteHabitdata(recId);
+        deleteHabitdata: async (_, { datId }, { dataSources }) => {
+            return dataSources.habitsAPI.deleteHabitdata(datId);
         }
     }
 };

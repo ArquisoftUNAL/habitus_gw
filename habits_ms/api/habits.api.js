@@ -4,26 +4,21 @@ async function getHabit(id, mode = "simple") {
 
     let base_url = `${BASE_HABITS_PATH}/${encodeURIComponent(id)}`;
 
-    if (mode === "recurrences" || mode === "data") {
-        base_url += "/recurrences";
-    }
-
     if (mode === "data") {
         base_url += "/data";
     }
 
     return this.get(
-        base_url
-    ).habit;
+        base_url, {
+        headers: {
+            "credentials": "test"
+        }
+    }).habit;
 }
 
-async function getUserHabits(user, page = 1, perPage = 10, mode = "simple") {
+async function getUserHabits(page = 1, perPage = 10, mode = "simple") {
 
-    let base_url = `${BASE_HABITS_PATH}/user/${encodeURIComponent(user)}`;
-
-    if (mode === "recurrences" || mode === "data") {
-        base_url += "/recurrences";
-    }
+    let base_url = `${BASE_HABITS_PATH}`;
 
     if (mode === "data") {
         base_url += "/data";
@@ -34,6 +29,9 @@ async function getUserHabits(user, page = 1, perPage = 10, mode = "simple") {
         params: {
             habits_page: page,
             habits_per_page: perPage
+        },
+        headers: {
+            "credentials": "test"
         }
     });
 
@@ -46,6 +44,9 @@ async function getCategoryHabits(category, page = 1, perPage = 10) {
         params: {
             habits_page: page,
             habits_per_page: perPage
+        },
+        headers: {
+            "credentials": "test"
         }
     });
 
@@ -53,15 +54,29 @@ async function getCategoryHabits(category, page = 1, perPage = 10) {
 }
 
 async function addHabit(habit) {
-    return this.post(`${BASE_HABITS_PATH}/`, habit);
+    return this.post(`${BASE_HABITS_PATH}/`, {
+        body: habit,
+        headers: {
+            "credentials": "test"
+        }
+    });
 }
 
 async function updateHabit(id, habit) {
-    return this.patch(`${BASE_HABITS_PATH}/${encodeURIComponent(id)}`, habit);
+    return this.patch(`${BASE_HABITS_PATH}/${encodeURIComponent(id)}`, {
+        body: habit,
+        headers: {
+            "credentials": "test"
+        }
+    });
 }
 
 async function deleteHabit(id) {
-    return this.delete(`${BASE_HABITS_PATH}/${encodeURIComponent(id)}`);
+    return this.delete(`${BASE_HABITS_PATH}/${encodeURIComponent(id)}`, {
+        headers: {
+            "credentials": "test"
+        }
+    });
 }
 
 module.exports = (HabitsAPI) => {
