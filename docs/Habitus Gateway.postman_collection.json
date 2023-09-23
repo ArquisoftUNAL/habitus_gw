@@ -179,6 +179,93 @@
 					"body": "{\n    \"data\": {\n        \"addHabit\": {\n            \"id\": \"30102ab7-f75e-429a-a23c-a5bb22d37f5b\"\n        }\n    }\n}"
 				}
 			]
+		},
+		{
+			"name": "Enqueue notification",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation MyMutation {\r\n    enqueueNotification(\r\n        data: [\r\n            {\r\n                title: \"ola\"\r\n                body: \"ola\",\r\n                init_date: \"faf\",\r\n                user_id: \"fsdfa\",\r\n                should_email: false\r\n            },\r\n            {\r\n                title: \"ola\"\r\n                body: \"ola\",\r\n                init_date: \"faf\",\r\n                user_id: \"fsdfa\",\r\n                should_email: false\r\n            },\r\n            {\r\n                title: \"ola\"\r\n                body: \"ola\",\r\n                init_date: \"faf\",\r\n                user_id: \"fsdfa\",\r\n                should_email: false\r\n            }\r\n        ]\r\n    ) {\r\n        message\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:4000",
+					"host": [
+						"localhost"
+					],
+					"port": "4000"
+				}
+			},
+			"response": [
+				{
+					"name": "Enqueue notification",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation MyMutation {\r\n    enqueueNotification(\r\n        data: [\r\n            {\r\n                title: \"ola\"\r\n                body: \"ola\",\r\n                init_date: \"faf\",\r\n                user_id: \"fsdfa\",\r\n                should_email: false\r\n            },\r\n            {\r\n                title: \"ola\"\r\n                body: \"ola\",\r\n                init_date: \"faf\",\r\n                user_id: \"fsdfa\",\r\n                should_email: false\r\n            },\r\n            {\r\n                title: \"ola\"\r\n                body: \"ola\",\r\n                init_date: \"faf\",\r\n                user_id: \"fsdfa\",\r\n                should_email: false\r\n            }\r\n        ]\r\n    ) {\r\n        message\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4000",
+							"host": [
+								"localhost"
+							],
+							"port": "4000"
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-store"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "67"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"43-1z11LAXAnpkrwcJ33S7GrJlGEhY\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 23 Sep 2023 04:03:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"enqueueNotification\": {\n            \"message\": \"Notifications sent!\"\n        }\n    }\n}"
+				}
+			]
 		}
 	]
 }

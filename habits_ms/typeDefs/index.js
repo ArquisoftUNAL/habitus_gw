@@ -2,6 +2,7 @@ const habitsTypeDefs = require('./habits.types');
 const categoriesTypeDefs = require('./categories.types');
 const habitsDataTypeDefs = require('./habitsdata.types');
 const eventsTypeDefs = require('./events.types');
+const ownershipTypeDefs = require('./ownership.types');
 
 const typeDefs = `#graphql
     type CreationResponse {
@@ -17,6 +18,7 @@ const typeDefs = `#graphql
     ${categoriesTypeDefs}
     ${habitsDataTypeDefs}
     ${eventsTypeDefs}
+    ${ownershipTypeDefs}
 `;
 
 module.exports = typeDefs;
