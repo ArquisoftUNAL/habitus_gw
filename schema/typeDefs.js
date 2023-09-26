@@ -2,6 +2,7 @@ const habitsMsTypesDefs = require('./../habits_ms/typeDefs');
 const usersMsTypesDefs = require('./../users_ms/typeDefs');
 const statisticsMsTypesDefs = require('./../statistics_ms/typeDefs');
 const notificationsMsTypesDefs = require('./../notifications_ms/typeDefs');
+const achievementsMsTypesDefs = require('./../achievements_ms/typeDefs');
 
 const root = `#graphql
 
@@ -16,6 +17,6 @@ const root = `#graphql
     }
 `;
 
-const typeDefs = [root, habitsMsTypesDefs, usersMsTypesDefs, statisticsMsTypesDefs, notificationsMsTypesDefs];
+const typeDefs = [root, habitsMsTypesDefs, usersMsTypesDefs, statisticsMsTypesDefs, notificationsMsTypesDefs, achievementsMsTypesDefs];
 
 module.exports = typeDefs;

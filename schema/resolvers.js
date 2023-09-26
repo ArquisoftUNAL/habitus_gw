@@ -2,6 +2,7 @@ const habitsMsResolvers = require('./../habits_ms/resolvers');
 const usersMsResolvers = require('./../users_ms/resolvers');
 const statisticsMsResolvers = require('./../statistics_ms/resolvers');
 const notificationsMsResolvers = require('./../notifications_ms/resolvers');
+const achievementsMsResolvers = require('./../achievements_ms/resolvers');
 const { GraphQLJSONObject } = require("graphql-type-json");
 
 const resolvers = {
@@ -10,13 +11,15 @@ const resolvers = {
         ...habitsMsResolvers.Query,
         ...usersMsResolvers.Query,
         ...statisticsMsResolvers.Query,
-        ...notificationsMsResolvers.Query
+        ...notificationsMsResolvers.Query,
+        ...achievementsMsResolvers.Query
     },
     Mutation: {
         ...habitsMsResolvers.Mutation,
         ...usersMsResolvers.Mutation,
         ...statisticsMsResolvers.Mutation,
-        ...notificationsMsResolvers.Mutation
+        ...notificationsMsResolvers.Mutation,
+        ...achievementsMsResolvers.Mutation
     }
 }
 

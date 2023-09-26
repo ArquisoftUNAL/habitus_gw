@@ -4,6 +4,7 @@ const { typeDefs, resolvers } = require('./schema');
 const HabitsAPI = require('./habits_ms/api');
 const UsersAPI = require('./users_ms/api');
 const StatisticsAPI = require('./statistics_ms/api');
+const AchievementsAPI = require("./achievements_ms/api");
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -24,7 +25,8 @@ const server = new ApolloServer({
                 dataSources: {
                     habitsAPI: new HabitsAPI({ cache }),
                     usersAPI: new UsersAPI({ cache }),
-                    statisticsAPI: new StatisticsAPI({ cache })
+                    statisticsAPI: new StatisticsAPI({ cache }),
+                    achievementsAPI: new AchievementsAPI({ cache })
                 }
             }
         }
