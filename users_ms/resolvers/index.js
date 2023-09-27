@@ -1,15 +1,13 @@
-const resolvers = {
-    Query: {
-        getUserById: async (_, { id }, { dataSources }) => {
-            return dataSources.usersAPI.getUserById(id);
-        }
+module.exports = {
+  Query: {
+    getCurrentUser: async (_, {jwt} , { dataSources }) => {
+      return dataSources.usersAPI.getCurrentUser(jwt);
     },
+  },
 
-    Mutation: {
-        createUser: async (_, { user }, { dataSources }) => {
-            return dataSources.usersAPI.createUser(user);
-        }
-    }
+  Mutation: {
+    createUser: async (_, { user }, { dataSources }) => {
+      return dataSources.usersAPI.createUser(user);
+    },
+  },
 };
-
-module.exports = resolvers;

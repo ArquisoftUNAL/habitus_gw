@@ -23,10 +23,10 @@ const server = new ApolloServer({
             const { cache } = server;
             return {
                 dataSources: {
-                    habitsAPI: new HabitsAPI({ cache }),
+                    // habitsAPI: new HabitsAPI({ cache }),
                     usersAPI: new UsersAPI({ cache }),
-                    statisticsAPI: new StatisticsAPI({ cache }),
-                    achievementsAPI: new AchievementsAPI({ cache })
+                    // statisticsAPI: new StatisticsAPI({ cache }),
+                    // achievementsAPI: new AchievementsAPI({ cache })
                 }
             }
         }

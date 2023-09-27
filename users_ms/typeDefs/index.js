@@ -1,6 +1,6 @@
-const typeDefs = `#graphql
+module.exports = `#graphql
     type User {
-        _id : Int!
+        _id : String!
         name: String!
         email: String!
         birthDay: String!
@@ -14,14 +14,10 @@ const typeDefs = `#graphql
     }
 
     extend type Query {
-        getUserById(id: Int!): [User]
-        
+        getCurrentUser(jwt: String!): User
     }
 
     extend type Mutation {
         createUser(user: UserCreate!): User
     }
-
 `;
-
-module.exports = typeDefs;
