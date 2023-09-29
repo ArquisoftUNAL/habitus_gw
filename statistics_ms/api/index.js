@@ -1,7 +1,9 @@
 const { RESTDataSource } = require("@apollo/datasource-rest");
 
+const { STATISTICS_MS_URL } = require('./../../config');
+
 class StatisticsAPI extends RESTDataSource {
-    baseURL = "http://localhost:8000/api/stats/";
+    baseURL = `${STATISTICS_MS_URL}/api/stats/`;
 
     async getMeasureHabitResume(id) {
         return this.get(`measure/resume/${id}`);
