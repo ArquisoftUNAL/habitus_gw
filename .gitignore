@@ -1,9 +1,7 @@
+.env
+
 # Ignore node-modules
 node_modules
 
-#Ignore config
-config
-
 #ignore package-lock.json
 package-lock.json
-package.json

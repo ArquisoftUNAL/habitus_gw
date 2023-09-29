@@ -1,0 +1,31 @@
+{
+  "name": "api-gateway-javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArquisoftUNAL/habitus_gw.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArquisoftUNAL/habitus_gw/issues"
+  },
+  "homepage": "https://github.com/ArquisoftUNAL/habitus_gw#readme",
+  "dependencies": {
+    "@apollo/datasource-rest": "^6.2.0",
+    "@apollo/server": "^4.9.3",
+    "amqplib": "^0.10.3",
+    "axios": "^1.5.1",
+    "dotenv": "^16.3.1",
+    "graphql": "^16.8.0",
+    "graphql-amqp-subscriptions": "^1.2.1",
+    "graphql-type-json": "^0.3.2"
+  }
+}
