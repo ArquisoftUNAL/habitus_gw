@@ -1,4 +1,6 @@
 const { RESTDataSource } = require("@apollo/datasource-rest");
+
+// Configure habits api
 const configHabitsAPI = require("./habits.api");
 const configCategoriesAPI = require("./categories.api");
 const configHabitDataAPI = require("./habitsdata.api");
