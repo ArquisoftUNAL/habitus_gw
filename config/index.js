@@ -10,6 +10,9 @@ const CONFIGURATION = {
 
     QUEUE_URL: process.env.QUEUE_URL,
 
+    HABITS_UPDATE_QUEUE: process.env.HABITS_UPDATE_QUEUE,
+    NOTIFICATIONS_QUEUE: process.env.NOTIFICATIONS_QUEUE,
+
     PORT: process.env.PORT || 4000
 };
 

@@ -6,6 +6,17 @@ const typeDefs = `#graphql
         hab_id: String!
     }
 
+    type HabitsDataCreateResponse {
+        message: String!
+        id: String!
+        habit_id: String!
+    }
+
+    type HabitDataUpdateDeleteResponse {
+        message: String!
+        habit_id: String!
+    }
+
     input HabitDataCreate {
         amount: Float!
         collected_at: String
@@ -19,17 +30,17 @@ const typeDefs = `#graphql
     }
 
     extend type Query {
-        habitdataById(id: String!): HabitData
-        habitdataByHabit(id: String!, page: Int, per_page: Int): [HabitData]
-        habitdataByUser(page: Int, per_page: Int): [HabitData]
+        habitdataById(id: String!): HabitsDataCreateResponse!
+        habitdataByHabit(id: String!, page: Int, per_page: Int): [HabitData]!
+        habitdataByUser(page: Int, per_page: Int): [HabitData]!
     }
 
     extend type Mutation {
-        addHabitdata(habitdata: HabitDataCreate!): CreationResponse
+        addHabitdata(habitdata: HabitDataCreate!): CreationResponse!
 
-        updateHabitdata(datId: String!, habitdata: HabitDataUpdate!): GeneralResponse
+        updateHabitdata(datId: String!, habitdata: HabitDataUpdate!): HabitDataUpdateDeleteResponse!
 
-        deleteHabitdata(datId: String!): GeneralResponse
+        deleteHabitdata(datId: String!): HabitDataUpdateDeleteResponse!
     }
 `;
 

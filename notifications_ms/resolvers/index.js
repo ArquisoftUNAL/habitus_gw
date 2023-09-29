@@ -1,15 +1,17 @@
+const { NOTIFICATIONS_QUEUE } = require('./../../config');
+
 const resolvers = {
     Query: {
     },
 
     Mutation: {
         enqueueNotification: async (_, { data }, { dataSources }) => {
-            console.log(data);
+            // Enqueue notification
+            dataSources.queueMQ.publish(NOTIFICATIONS_QUEUE, data);
 
-            // TODO: Enqueue notifications in RabbitMQ
             return {
-                message: "Notifications sent!"
-            }
+                message: "Notification enqueued"
+            };
         }
     }
 };

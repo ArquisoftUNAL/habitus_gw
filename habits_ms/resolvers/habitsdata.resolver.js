@@ -1,3 +1,5 @@
+const { HABITS_UPDATE_QUEUE } = require('./../../config');
+
 const resolvers = {
     Query: {
         habitdataById: async (_, { id }, { dataSources }) => {
@@ -15,15 +17,37 @@ const resolvers = {
 
     Mutation: {
         addHabitdata: async (_, { habitdataData }, { dataSources }) => {
-            return dataSources.habitsAPI.addHabitdata(habitdataData);
+            const result = await dataSources.habitsAPI.addHabitdata(habitdataData);
+
+            // Enqueue habit data update
+            dataSources.queueMQ.publish(HABITS_UPDATE_QUEUE, {
+                habit_id: result.habit_id
+            });
+
+            return result;
         },
 
         updateHabitdata: async (_, { datId, habitdataData }, { dataSources }) => {
-            return dataSources.habitsAPI.updateHabitdata(datId, habitdataData);
+            // Enqueue habit data update
+
+            const result = await dataSources.habitsAPI.updateHabitdata(datId, habitdataData);
+
+            dataSources.queueMQ.publish(HABITS_UPDATE_QUEUE, {
+                habit_id: result.habit_id
+            });
+
+            return result;
         },
 
         deleteHabitdata: async (_, { datId }, { dataSources }) => {
-            return dataSources.habitsAPI.deleteHabitdata(datId);
+            const result = await dataSources.habitsAPI.deleteHabitdata(datId);
+
+            // Enqueue habit data update
+            dataSources.queueMQ.publish(HABITS_UPDATE_QUEUE, {
+                habit_id: result.habit_id
+            });
+
+            return result;
         }
     }
 };
