@@ -1,26 +1,10 @@
-const { GraphQLObjectType, GraphQLSchema } = require("graphql");
+const typeDefs = require('./typeDefs');
+const resolvers = require('./resolvers');
 
-const { mutation: habitsMutation, query: habitsQuery } = require('./habits_ms');
-const { mutation: usersMutation, query: usersQuery } = require('./users_ms');
+// Append inputs, typeDefs, and resolvers to the schema
+const schema = {
+    typeDefs,
+    resolvers
+};
 
-const query = new GraphQLObjectType({
-    name: "Query",
-    fields: () => ({
-        ...habitsQuery,
-        ...usersQuery,
-    })
-});
-
-
-const mutation = new GraphQLObjectType({
-    name: "Mutation",
-    fields: () => ({
-        ...habitsMutation,
-        ...usersMutation,
-    })
-});
-
-module.exports = new GraphQLSchema({
-    query,
-    mutation,
-});
+module.exports = schema;
