@@ -4,13 +4,14 @@ module.exports = `#graphql
         name: String!
         email: String!
         birthDay: String!
+        jwt : String
     }
 
     input UserCreate {
-        first_name: String!
-        last_name: String!
+        name: String!
         email: String!
         password: String!
+        birthDay: String!
     }
 
     extend type Query {
