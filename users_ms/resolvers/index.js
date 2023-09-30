@@ -15,5 +15,8 @@ module.exports = {
     loginUser: async (_, { user }, { dataSources }) => {
       return dataSources.usersAPI.loginUser(user);
     },
+    deleteUser: async (_, { jwt }, { dataSources }) => {
+      return dataSources.usersAPI.deleteUser(jwt);
+    }
   },
 };

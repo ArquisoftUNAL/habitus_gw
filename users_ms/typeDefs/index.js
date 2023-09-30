@@ -22,5 +22,6 @@ module.exports = `#graphql
     extend type Mutation {
         createUser(user: UserCreate!): User
         loginUser(user: UserCreate!): String!
+        deleteUser(jwt: String!): User
     }
 `;

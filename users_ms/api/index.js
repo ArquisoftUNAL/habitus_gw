@@ -38,6 +38,18 @@ class UsersAPI extends RESTDataSource {
     }
     return response.headers["x-auth-token"];
   }
+
+  async deleteUser(jwt) {
+    let response;
+    try {
+      response = await axios.delete("http://localhost:3000/users/me", {
+        headers: { "x-auth-token": jwt },
+      });
+    } catch (error) {
+      return null;
+    }
+    return response.data;
+  }
 }
 
 module.exports = UsersAPI;
