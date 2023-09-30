@@ -25,6 +25,19 @@ class UsersAPI extends RESTDataSource {
     });
     return response.data;
   }
+
+  async loginUser(userLoginData) {
+    let response;
+    try {
+      response = await axios.post(
+        "http://localhost:3000/auth/login",
+        userLoginData
+      );
+    } catch (error) {
+      return "User or Password incorrect";
+    }
+    return response.headers["x-auth-token"];
+  }
 }
 
 module.exports = UsersAPI;

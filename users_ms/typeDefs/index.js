@@ -1,17 +1,17 @@
 module.exports = `#graphql
     type User {
-        _id : String!
-        name: String!
-        email: String!
-        birthDay: String!
+        _id : String
+        name: String
+        email: String
+        birthDay: String
         jwt : String
     }
 
     input UserCreate {
-        name: String!
+        name: String
         email: String!
         password: String!
-        birthDay: String!
+        birthDay: String
     }
 
     extend type Query {
@@ -21,5 +21,6 @@ module.exports = `#graphql
 
     extend type Mutation {
         createUser(user: UserCreate!): User
+        loginUser(user: UserCreate!): String!
     }
 `;
