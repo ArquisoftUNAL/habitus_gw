@@ -20,9 +20,7 @@ const resolvers = {
             const result = await dataSources.habitsAPI.addHabitdata(habitdataData);
 
             // Enqueue habit data update
-            dataSources.queueMQ.publish(HABITS_UPDATE_QUEUE, {
-                habit_id: result.habit_id
-            });
+            dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
 
             return result;
         },
@@ -32,9 +30,7 @@ const resolvers = {
 
             const result = await dataSources.habitsAPI.updateHabitdata(datId, habitdataData);
 
-            dataSources.queueMQ.publish(HABITS_UPDATE_QUEUE, {
-                habit_id: result.habit_id
-            });
+            dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
 
             return result;
         },
@@ -43,9 +39,7 @@ const resolvers = {
             const result = await dataSources.habitsAPI.deleteHabitdata(datId);
 
             // Enqueue habit data update
-            dataSources.queueMQ.publish(HABITS_UPDATE_QUEUE, {
-                habit_id: result.habit_id
-            });
+            dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
 
             return result;
         }

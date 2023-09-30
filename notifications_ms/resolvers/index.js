@@ -7,10 +7,27 @@ const resolvers = {
     Mutation: {
         enqueueNotification: async (_, { data }, { dataSources }) => {
             // Enqueue notification
-            dataSources.queueMQ.publish(NOTIFICATIONS_QUEUE, data);
+            for (const notification of data) {
+                if (!notification.user_id || !notification.title || !notification.body) {
+                    return {
+                        message: "Invalid notification data"
+                    };
+                }
+
+                try {
+                    await dataSources.notificationsQueue.publish(NOTIFICATIONS_QUEUE, notification);
+                } catch (err) {
+                    console.log(err);
+
+                    return {
+                        message: "Error enqueuing notifications"
+                    };
+                }
+
+            }
 
             return {
-                message: "Notification enqueued"
+                message: "Notifications enqueued"
             };
         }
     }

@@ -1,7 +1,7 @@
 const { ApolloServer } = require('@apollo/server');
 const { startStandaloneServer } = require('@apollo/server/standalone');
 const { typeDefs, resolvers } = require('./schema');
-const amqpSub = require('./ampq');
+const { amqpNotifications, amqpHabits } = require('./ampq');
 const HabitsAPI = require('./habits_ms/api');
 const UsersAPI = require('./users_ms/api');
 const StatisticsAPI = require('./statistics_ms/api');
@@ -14,24 +14,33 @@ const PORT = process.env.PORT || 4000;
 
 (async () => {
     // Try to connect to RabbitMQ
-    let pubsub;
+    let notificationsQueue, habitsQueue;
 
     try {
-        pubsub = await amqpSub();
+        notificationsQueue = await amqpNotifications();
     }
     catch (err) {
-        console.log("Error connecting to RabbitMQ");
+        console.log("Error connecting to RabbitMQ (Notifications)");
         console.log(err);
-        pubsub = null;
+        notificationsQueue = null;
+    }
+
+    try {
+        habitsQueue = await amqpHabits();
+    }
+    catch (err) {
+        console.log("Error connecting to RabbitMQ (Habits updates)");
+        console.log(err);
+        habitsQueue = null;
     }
 
     const server = new ApolloServer({
         typeDefs,
         resolvers,
-        subscriptions: {
-            onConnect: () => ({ pubsub }),
-            onDisconnect: () => console.log("Disconnected from RabbitMQ")
-        },
+        // subscriptions: {
+        //     onConnect: () => ({ habitsQueue, notificationsQueue }),
+        //     onDisconnect: () => console.log("Disconnected from RabbitMQ")
+        // },
     });
 
     const { url } = await startStandaloneServer(server, {
@@ -44,7 +53,8 @@ const PORT = process.env.PORT || 4000;
                     usersAPI: new UsersAPI({ cache }),
                     statisticsAPI: new StatisticsAPI({ cache }),
                     achievementsAPI: new AchievementsAPI({ cache }),
-                    queueMQ: pubsub
+                    notificationsQueue: notificationsQueue,
+                    habitsQueue: habitsQueue
                 }
             }
         }

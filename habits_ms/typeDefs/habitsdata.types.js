@@ -8,13 +8,12 @@ const typeDefs = `#graphql
 
     type HabitsDataCreateResponse {
         message: String!
-        id: String!
-        habit_id: String!
+        data: HabitData!
     }
 
     type HabitDataUpdateDeleteResponse {
         message: String!
-        habit_id: String!
+        data: HabitData!
     }
 
     input HabitDataCreate {
