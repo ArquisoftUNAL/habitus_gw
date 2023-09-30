@@ -18,6 +18,13 @@ class UsersAPI extends RESTDataSource {
     const jwt = response.headers["x-auth-token"];
     return { ...response.data, jwt }; // Append jwt to user object
   }
+
+  async validateToken(jwt) {
+    const response = await axios.get("http://localhost:3000/auth/token", {
+      headers: { "x-auth-token": jwt },
+    });
+    return response.data;
+  }
 }
 
 module.exports = UsersAPI;

@@ -3,6 +3,9 @@ module.exports = {
     getCurrentUser: async (_, {jwt} , { dataSources }) => {
       return dataSources.usersAPI.getCurrentUser(jwt);
     },
+    validateToken: async (_, { jwt }, { dataSources }) => {
+      return dataSources.usersAPI.validateToken(jwt);
+    },
   },
 
   Mutation: {
