@@ -6,6 +6,7 @@ const HabitsAPI = require('./habits_ms/api');
 const UsersAPI = require('./users_ms/api');
 const StatisticsAPI = require('./statistics_ms/api');
 const AchievementsAPI = require("./achievements_ms/api");
+const NotificationsAPI = require('./notifications_ms/api');
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -53,6 +54,7 @@ const PORT = process.env.PORT || 4000;
                     usersAPI: new UsersAPI({ cache }),
                     statisticsAPI: new StatisticsAPI({ cache }),
                     achievementsAPI: new AchievementsAPI({ cache }),
+                    notificationsAPI: new NotificationsAPI({ cache }),
                     notificationsQueue: notificationsQueue,
                     habitsQueue: habitsQueue
                 }
