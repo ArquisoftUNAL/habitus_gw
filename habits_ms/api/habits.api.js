@@ -1,4 +1,5 @@
 const BASE_HABITS_PATH = "habits";
+const { generateRequestHeaders } = require("./../utils");
 
 async function getHabit(userId, isAdmin, id, mode = "simple") {
 
@@ -10,16 +11,11 @@ async function getHabit(userId, isAdmin, id, mode = "simple") {
 
     return this.get(
         base_url, {
-        headers: {
-            "credentials": isAdmin ? "administrator" : userId
-        }
+        headers: generateRequestHeaders(userId, isAdmin)
     }).habit;
 }
 
 async function getUserHabits(userId, isAdmin, page = 1, perPage = 10, mode = "simple") {
-
-    console.log(userId, isAdmin);
-
 
     let base_url = `${BASE_HABITS_PATH}`;
 
@@ -33,9 +29,7 @@ async function getUserHabits(userId, isAdmin, page = 1, perPage = 10, mode = "si
             habits_page: page,
             habits_per_page: perPage
         },
-        headers: {
-            "credentials": isAdmin ? "administrator" : userId
-        }
+        headers: generateRequestHeaders(userId, isAdmin)
     });
 
     return data.habits;
@@ -48,9 +42,7 @@ async function getCategoryHabits(userId, isAdmin, category, page = 1, perPage = 
             habits_page: page,
             habits_per_page: perPage
         },
-        headers: {
-            "credentials": isAdmin ? "administrator" : userId
-        }
+        headers: generateRequestHeaders(userId, isAdmin)
     });
 
     return data.habits;
@@ -59,26 +51,20 @@ async function getCategoryHabits(userId, isAdmin, category, page = 1, perPage = 
 async function addHabit(userId, isAdmin, habit) {
     return this.post(`${BASE_HABITS_PATH}/`, {
         body: habit,
-        headers: {
-            "credentials": isAdmin ? "administrator" : userId
-        }
+        headers: generateRequestHeaders(userId, isAdmin)
     });
 }
 
 async function updateHabit(userId, isAdmin, id, habit) {
     return this.patch(`${BASE_HABITS_PATH}/${encodeURIComponent(id)}`, {
         body: habit,
-        headers: {
-            "credentials": isAdmin ? "administrator" : userId
-        }
+        headers: generateRequestHeaders(userId, isAdmin)
     });
 }
 
 async function deleteHabit(userId, isAdmin, id) {
     return this.delete(`${BASE_HABITS_PATH}/${encodeURIComponent(id)}`, {
-        headers: {
-            "credentials": isAdmin ? "administrator" : userId
-        }
+        headers: generateRequestHeaders(userId, isAdmin)
     });
 }
 
