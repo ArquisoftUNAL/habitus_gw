@@ -8,6 +8,10 @@ module.exports = `#graphql
         isAdmin: Boolean
     }
 
+    type SimpleMessage {
+        message: String!
+    }
+
     input UserCreate {
         name: String!
         email: String!
@@ -28,6 +32,7 @@ module.exports = `#graphql
     extend type Mutation {
         createUser(user: UserCreate!): User
         loginUser(user: UserLogin!): String!
+        logoutUser: SimpleMessage
         deleteUser: User
     }
 `;

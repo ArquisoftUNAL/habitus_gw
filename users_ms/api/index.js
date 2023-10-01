@@ -32,7 +32,7 @@ class UsersAPI extends RESTDataSource {
     const response = await this.get(`auth/token`, {
       headers: { "x-auth-token": jwt },
     });
-    return response.data;
+    return response;
   }
 
   async loginUser(userLoginData) {
@@ -48,6 +48,13 @@ class UsersAPI extends RESTDataSource {
     const jwt = result.response.headers.get("x-auth-token");
 
     return jwt;
+  }
+
+  async logoutUser(token) {
+    const response = await this.delete(`auth/logout`, {
+      headers: { "x-auth-token": token },
+    });
+    return response;
   }
 
   async deleteUser(jwt) {

@@ -8,6 +8,7 @@ const typeDefs = `#graphql
         usr_id: String!
         hab_is_yn: Boolean!
         hab_is_favorite: Boolean!
+        hab_next_closure_date: String!
         hab_color: String!
         hab_units: String!
         hab_goal: Float!
