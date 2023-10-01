@@ -222,7 +222,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE4YmFjMDQyMjA5YmExOTgxN2Y5ZDEiLCJfaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY5NjEyMjIwNywiZXhwIjoxNjk2MTY1NDA3fQ.d_XRSXNRXDLl9qaVGPSOw-9fMhyvXF10d-erRZvBvZE",
+								"value": "{{user_token}}",
 								"type": "text"
 							}
 						],
@@ -323,6 +323,91 @@
 							"body": "{\n    \"data\": {\n        \"getCurrentUser\": {\n            \"_id\": \"6518bac042209ba19817f9d1\",\n            \"name\": \"edgar134\",\n            \"email\": \"edgardanielgd134@gmail.com\"\n        }\n    }\n}"
 						}
 					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation LogoutUser {\r\n    logoutUser {\r\n        message\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{gateway_url}}",
+							"host": [
+								"{{gateway_url}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation LogoutUser {\r\n    logoutUser {\r\n        message\r\n    }\r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{gateway_url}}",
+									"host": [
+										"{{gateway_url}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1462"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5b6-cExWOxauKiZTtYQtSrW8JLyhnXA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 01 Oct 2023 18:46:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": [\n        {\n            \"message\": \"404: Not Found\",\n            \"locations\": [\n                {\n                    \"line\": 2,\n                    \"column\": 5\n                }\n            ],\n            \"path\": [\n                \"logoutUser\"\n            ],\n            \"extensions\": {\n                \"response\": {\n                    \"url\": \"http://localhost:3000/auth/logout\",\n                    \"status\": 404,\n                    \"statusText\": \"Not Found\",\n                    \"body\": {\n                        \"message\": \"Token not found\"\n                    }\n                },\n                \"code\": \"INTERNAL_SERVER_ERROR\",\n                \"stacktrace\": [\n                    \"GraphQLError: 404: Not Found\",\n                    \"    at UsersAPI.errorFromResponse (D:\\\\OneDriveData\\\\Documents-A\\\\UNAL20232\\\\Arquisoft\\\\Api-Gateway-Javascript\\\\node_modules\\\\@apollo\\\\datasource-rest\\\\dist\\\\RESTDataSource.js:99:16)\",\n                    \"    at UsersAPI.throwIfResponseIsError (D:\\\\OneDriveData\\\\Documents-A\\\\UNAL20232\\\\Arquisoft\\\\Api-Gateway-Javascript\\\\node_modules\\\\@apollo\\\\datasource-rest\\\\dist\\\\RESTDataSource.js:91:26)\",\n                    \"    at D:\\\\OneDriveData\\\\Documents-A\\\\UNAL20232\\\\Arquisoft\\\\Api-Gateway-Javascript\\\\node_modules\\\\@apollo\\\\datasource-rest\\\\dist\\\\RESTDataSource.js:203:32\",\n                    \"    at processTicksAndRejections (node:internal/process/task_queues:96:5)\",\n                    \"    at async UsersAPI.fetch (D:\\\\OneDriveData\\\\Documents-A\\\\UNAL20232\\\\Arquisoft\\\\Api-Gateway-Javascript\\\\node_modules\\\\@apollo\\\\datasource-rest\\\\dist\\\\RESTDataSource.js:251:21)\",\n                    \"    at async UsersAPI.delete (D:\\\\OneDriveData\\\\Documents-A\\\\UNAL20232\\\\Arquisoft\\\\Api-Gateway-Javascript\\\\node_modules\\\\@apollo\\\\datasource-rest\\\\dist\\\\RESTDataSource.js:139:17)\",\n                    \"    at async UsersAPI.logoutUser (D:\\\\OneDriveData\\\\Documents-A\\\\UNAL20232\\\\Arquisoft\\\\Api-Gateway-Javascript\\\\users_ms\\\\api\\\\index.js:54:22)\"\n                ]\n            }\n        }\n    ],\n    \"data\": {\n        \"logoutUser\": null\n    }\n}"
+						}
+					]
 				}
 			]
 		},
@@ -336,14 +421,14 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE4YmFjMDQyMjA5YmExOTgxN2Y5ZDEiLCJfaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY5NjEzMzk4OSwiZXhwIjoxNjk2MTc3MTg5fQ.khF59cnRqvI8zQLD_btEJ6SsYNeXZCMr1RSl6RVgwjY",
+								"value": "{{user_token}}",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query ExampleQuery {\r\n  habitsByUser {\r\n      hab_id\r\n      usr_id\r\n  }\r\n}\r\n",
+								"query": "query ExampleQuery {\r\n  habitsByUser {\r\n      hab_id\r\n      usr_id\r\n      hab_next_closure_date\r\n  }\r\n}\r\n",
 								"variables": ""
 							}
 						},
@@ -428,7 +513,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE4YmFjMDQyMjA5YmExOTgxN2Y5ZDEiLCJfaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY5NjEzMzE2NSwiZXhwIjoxNjk2MTc2MzY1fQ.IeywIXHlMFOyUBgaqOJHFc3HvSTsJULh3PHscCN0cNU",
+								"value": "{{user_token}}",
 								"type": "text"
 							}
 						],
@@ -657,7 +742,7 @@
 					},
 					"response": [
 						{
-							"name": "New Request",
+							"name": "Add habit data",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -817,6 +902,33 @@
 							"body": "{\n    \"data\": {\n        \"enqueueNotification\": {\n            \"message\": \"Notifications sent!\"\n        }\n    }\n}"
 						}
 					]
+				},
+				{
+					"name": "Get Notifications",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{user_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GettingNotifications {\r\n    getNotifications {\r\n        not_id\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{gateway_url}}",
+							"host": [
+								"{{gateway_url}}"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
@@ -844,12 +956,12 @@
 	"variable": [
 		{
 			"key": "gateway_url",
-			"value": "localhost:4000",
+			"value": "https://habitusgw-4rd4uo9b.b4a.run/",
 			"type": "string"
 		},
 		{
 			"key": "user_token",
-			"value": "",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE4YmFjMDQyMjA5YmExOTgxN2Y5ZDEiLCJfaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY5NjE5MDAzOCwiZXhwIjoxNjk2MjMzMjM4fQ.N_C6_De03CMLRJxFORwk2Ai-NzaXXEg_DGjzcXrS78U",
 			"type": "string"
 		}
 	]

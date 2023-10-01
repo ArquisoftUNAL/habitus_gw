@@ -18,6 +18,12 @@ const typeDefs = `#graphql
         data: Achievement!
     }
 
+    type Streak {
+        date_start: String!
+        date_end: String!
+        streak: Float!
+    }
+
     input AchievementCreate {
         name: String!
         habId: String!
@@ -40,6 +46,7 @@ const typeDefs = `#graphql
         deleteAchievement(id: String!): MessageResponse!
         updateAchievement(id: String!, achievement: AchievementUpdate!): AchievementResponse!
         updateStreak(id: String!, retainStreak: Boolean!): AchievementResponse!
+        notifyStreakUpdate(hab_id: String!, streak: Streak!): MessageResponse!
     }
 `;
 

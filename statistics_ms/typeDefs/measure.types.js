@@ -25,9 +25,14 @@ const typeDefs = `#graphql
         year: MeasureHistoryTimeData!
     }
 
+    type MeasureStreak {
+        data: JSONObject
+    }
+
     extend type Query {
         resumeMeasureHabit(id : String!): MeaasureResumeData!
         historyMeasureHabit(id : String!): MeasureHistoryData!
+        measureStreaks(id : String!): MeasureStreak!
     }
 `;
 

@@ -37,6 +37,10 @@ class StatisticsAPI extends RESTDataSource {
         return this.get(`freq_day_week/${id}`);
     }
 
+    async getMeasureStreaks(id) {
+        return this.get(`measure/streaks/${id}`);
+    }
+
 }
 
 module.exports = StatisticsAPI;
