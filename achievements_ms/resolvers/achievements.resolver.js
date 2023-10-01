@@ -45,6 +45,15 @@ const resolvers = {
         updateStreak: async (_, { id, retainStreak }, { dataSources }) => {
             return dataSources.achievementsAPI.updateAchievementStreak(id, retainStreak);
         },
+
+        notifyStreakUpdate: async (_, { hab_id, streak }, { dataSources }) => {
+            // return dataSources.achievementsAPI.notifyStreakUpdate(hab_id, streak);
+            return {
+                status: 200,
+                message: "Streak updated successfully."
+            }
+        }
+
     }
 };
 

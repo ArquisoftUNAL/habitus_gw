@@ -18,7 +18,7 @@ const typeDefs = `#graphql
         data: Achievement!
     }
 
-    type Streak {
+    input Streak {
         date_start: String!
         date_end: String!
         streak: Float!
