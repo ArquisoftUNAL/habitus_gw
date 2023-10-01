@@ -1,6 +1,6 @@
 const BASE_HABIT_DATA = "habitdata";
 
-async function getHabitdataById(id) {
+async function getHabitdataById(userId, isAdmin, id) {
     const data = await this.get(
         `${BASE_HABIT_DATA}/${encodeURIComponent(id)}/`, {
         params: {
@@ -8,14 +8,14 @@ async function getHabitdataById(id) {
             categories_per_page: perPage
         },
         headers: {
-            "credentials": "test"
+            "credentials": isAdmin ? "administrator" : userId
         }
     });
 
     return data.data;
 }
 
-async function getHabitData(habit, page = 1, perPage = 10) {
+async function getHabitData(userId, isAdmin, habit, page = 1, perPage = 10) {
     const data = await this.get(
         `${BASE_HABIT_DATA}/habit/${encodeURIComponent(habit)}`, {
         params: {
@@ -23,14 +23,14 @@ async function getHabitData(habit, page = 1, perPage = 10) {
             data_per_page: perPage
         },
         headers: {
-            "credentials": "test"
+            "credentials": isAdmin ? "administrator" : userId
         }
     });
 
     return data.data;
 }
 
-async function getUsertData(page = 1, perPage = 10) {
+async function getUsertData(userId, isAdmin, page = 1, perPage = 10) {
     const data = await this.get(
         `${BASE_HABIT_DATA}`, {
         params: {
@@ -38,35 +38,35 @@ async function getUsertData(page = 1, perPage = 10) {
             data_per_page: perPage
         },
         headers: {
-            "credentials": "test"
+            "credentials": isAdmin ? "administrator" : userId
         }
     });
 
     return data.data;
 }
 
-async function addHabitdata(recurrence) {
+async function addHabitdata(userId, isAdmin, recurrence) {
     return this.post(`${BASE_HABIT_DATA}/`, {
         body: recurrence,
         headers: {
-            "credentials": "test"
+            "credentials": isAdmin ? "administrator" : userId
         }
     });
 }
 
-async function updateHabitdata(id, recurrence) {
+async function updateHabitdata(userId, isAdmin, id, recurrence) {
     return this.patch(`${BASE_HABIT_DATA}/${encodeURIComponent(id)}`, {
         body: recurrence,
         headers: {
-            "credentials": "test"
+            "credentials": isAdmin ? "administrator" : userId
         }
     });
 }
 
-async function deleteHabitdata(id) {
+async function deleteHabitdata(userId, isAdmin, id) {
     return this.delete(`${BASE_HABIT_DATA}/${encodeURIComponent(id)}`, {
         headers: {
-            "credentials": "test"
+            "credentials": isAdmin ? "administrator" : userId
         }
     });
 }

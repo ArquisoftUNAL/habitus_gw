@@ -1,7 +1,7 @@
 const resolvers = {
     Query: {
-        habitOwnership: async (_, { id }, { dataSources }) => {
-            return dataSources.habitsAPI.checkHabitOwnership(id);
+        habitOwnership: async (_, { id }, { dataSources, userId, isAdmin, }) => {
+            return dataSources.habitsAPI.checkHabitOwnership(userId, isAdmin, id);
         }
     }
 };

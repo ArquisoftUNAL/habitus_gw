@@ -5,23 +5,29 @@ module.exports = `#graphql
         email: String
         birthDay: String
         jwt : String
+        isAdmin: Boolean
     }
 
     input UserCreate {
-        name: String
+        name: String!
         email: String!
         password: String!
         birthDay: String
     }
 
+    input UserLogin {
+        email: String!
+        password: String!
+    }
+
     extend type Query {
-        getCurrentUser(jwt: String!): User
-        validateToken(jwt: String!): Boolean
+        getCurrentUser: User
+        validateToken: Boolean
     }
 
     extend type Mutation {
         createUser(user: UserCreate!): User
-        loginUser(user: UserCreate!): String!
-        deleteUser(jwt: String!): User
+        loginUser(user: UserLogin!): String!
+        deleteUser: User
     }
 `;

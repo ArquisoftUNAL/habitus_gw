@@ -1,25 +1,25 @@
 const resolvers = {
     Query: {
-        categories: async (_, { page, per_page }, { dataSources }) => {
-            return dataSources.habitsAPI.getAllCategories(page, per_page);
+        categories: async (_, { page, per_page }, { dataSources, userId, isAdmin, }) => {
+            return dataSources.habitsAPI.getAllCategories(userId, isAdmin, page, per_page);
         },
 
-        categoryById: async (_, { id }, { dataSources }) => {
-            return dataSources.habitsAPI.getCategoryById(id);
+        categoryById: async (_, { id }, { dataSources, userId, isAdmin, }) => {
+            return dataSources.habitsAPI.getCategoryById(userId, isAdmin, id);
         }
     },
 
     Mutation: {
-        addCategory: async (_, { category }, { dataSources }) => {
-            return dataSources.habitsAPI.addCategory(category);
+        addCategory: async (_, { category }, { dataSources, userId, isAdmin, }) => {
+            return dataSources.habitsAPI.addCategory(userId, isAdmin, category);
         },
 
-        updateCategory: async (_, { id, category }, { dataSources }) => {
-            return dataSources.habitsAPI.updateCategory(id, category);
+        updateCategory: async (_, { id, category }, { dataSources, userId, isAdmin, }) => {
+            return dataSources.habitsAPI.updateCategory(userId, isAdmin, id, category);
         },
 
-        deleteHabit: async (_, { id }, { dataSources }) => {
-            return dataSources.habitsAPI.deleteCategory(id);
+        deleteHabit: async (_, { id }, { dataSources, userId, isAdmin, }) => {
+            return dataSources.habitsAPI.deleteCategory(userId, isAdmin, id);
         }
     }
 };

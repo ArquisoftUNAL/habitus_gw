@@ -1,10 +1,10 @@
 module.exports = {
   Query: {
-    getCurrentUser: async (_, {jwt} , { dataSources }) => {
-      return dataSources.usersAPI.getCurrentUser(jwt);
+    getCurrentUser: async (_, __, { dataSources, ___, _____, token }) => {
+      return dataSources.usersAPI.getCurrentUser(token);
     },
-    validateToken: async (_, { jwt }, { dataSources }) => {
-      return dataSources.usersAPI.validateToken(jwt);
+    validateToken: async (_, __, { dataSources, ___, _____, token }) => {
+      return dataSources.usersAPI.validateToken(token);
     },
   },
 
@@ -15,8 +15,8 @@ module.exports = {
     loginUser: async (_, { user }, { dataSources }) => {
       return dataSources.usersAPI.loginUser(user);
     },
-    deleteUser: async (_, { jwt }, { dataSources }) => {
-      return dataSources.usersAPI.deleteUser(jwt);
+    deleteUser: async (_, __, { dataSources, ___, _____, token }) => {
+      return dataSources.usersAPI.deleteUser(token);
     }
   },
 };

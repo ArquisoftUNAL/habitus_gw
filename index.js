@@ -46,19 +46,34 @@ const PORT = process.env.PORT || 4000;
 
     const { url } = await startStandaloneServer(server, {
         listen: { port: PORT },
-        context: async () => {
+        context: async ({ req, res }) => {
+
             const { cache } = server;
-            return {
-                dataSources: {
-                    habitsAPI: new HabitsAPI({ cache }),
-                    usersAPI: new UsersAPI({ cache }),
-                    statisticsAPI: new StatisticsAPI({ cache }),
-                    achievementsAPI: new AchievementsAPI({ cache }),
-                    notificationsAPI: new NotificationsAPI({ cache }),
-                    notificationsQueue: notificationsQueue,
-                    habitsQueue: habitsQueue
-                }
+
+            const dataSources = {
+                habitsAPI: new HabitsAPI({ cache }),
+                usersAPI: new UsersAPI({ cache }),
+                statisticsAPI: new StatisticsAPI({ cache }),
+                achievementsAPI: new AchievementsAPI({ cache }),
+                notificationsAPI: new NotificationsAPI({ cache }),
+                notificationsQueue: notificationsQueue,
+                habitsQueue: habitsQueue
             }
+
+            // Get token and try to authenticate user
+            const token = req.headers['x-auth-token'];
+            let userId = null;
+            let isAdmin = false;
+
+            if (token) {
+                try {
+                    const user = await dataSources.usersAPI.getCurrentUser(token);
+                    userId = user._id;
+                    isAdmin = user.isAdmin;
+                } catch (e) { }
+            }
+
+            return { dataSources, userId, isAdmin, token };
         }
     });
 

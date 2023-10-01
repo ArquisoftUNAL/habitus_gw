@@ -1,5 +1,4 @@
 const { RESTDataSource } = require("@apollo/datasource-rest");
-const axios = require("axios");
 
 const { USERS_MS_URL } = require("./../../config");
 
@@ -7,42 +6,54 @@ class UsersAPI extends RESTDataSource {
   baseURL = USERS_MS_URL;
 
   async getCurrentUser(jwt) {
-    const response = await axios.get("http://localhost:3000/users/me", {
+    const response = await this.get(`users/me`, {
       headers: { "x-auth-token": jwt },
     });
-    return response.data;
+
+    return response;
   }
 
   async createUser(user) {
-    const response = await axios.post("http://localhost:3000/users", user);
-    const jwt = response.headers["x-auth-token"];
-    return { ...response.data, jwt }; // Append jwt to user object
+    const result = await this.fetch(`users`, {
+      method: "POST",
+      body: user
+    });
+
+    // Get auth header from response
+    const jwt = result.response.headers.get("x-auth-token");
+
+    return {
+      ...result.parsedBody,
+      jwt
+    }; // Append jwt to user object
   }
 
   async validateToken(jwt) {
-    const response = await axios.get("http://localhost:3000/auth/token", {
+    const response = await this.get(`auth/token`, {
       headers: { "x-auth-token": jwt },
     });
     return response.data;
   }
 
   async loginUser(userLoginData) {
-    let response;
-    try {
-      response = await axios.post(
-        "http://localhost:3000/auth/login",
-        userLoginData
-      );
-    } catch (error) {
-      return "User or Password incorrect";
-    }
-    return response.headers["x-auth-token"];
+    const result = await this.fetch(
+      `auth/login`,
+      {
+        method: "POST",
+        body: userLoginData
+      }
+    );
+
+    // Get auth header from response
+    const jwt = result.response.headers.get("x-auth-token");
+
+    return jwt;
   }
 
   async deleteUser(jwt) {
     let response;
     try {
-      response = await axios.delete("http://localhost:3000/users/me", {
+      response = await this.delete(`users/me`, {
         headers: { "x-auth-token": jwt },
       });
     } catch (error) {

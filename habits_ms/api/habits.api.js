@@ -1,6 +1,6 @@
 const BASE_HABITS_PATH = "habits";
 
-async function getHabit(id, mode = "simple") {
+async function getHabit(userId, isAdmin, id, mode = "simple") {
 
     let base_url = `${BASE_HABITS_PATH}/${encodeURIComponent(id)}`;
 
@@ -11,12 +11,15 @@ async function getHabit(id, mode = "simple") {
     return this.get(
         base_url, {
         headers: {
-            "credentials": "test"
+            "credentials": isAdmin ? "administrator" : userId
         }
     }).habit;
 }
 
-async function getUserHabits(page = 1, perPage = 10, mode = "simple") {
+async function getUserHabits(userId, isAdmin, page = 1, perPage = 10, mode = "simple") {
+
+    console.log(userId, isAdmin);
+
 
     let base_url = `${BASE_HABITS_PATH}`;
 
@@ -31,14 +34,14 @@ async function getUserHabits(page = 1, perPage = 10, mode = "simple") {
             habits_per_page: perPage
         },
         headers: {
-            "credentials": "test"
+            "credentials": isAdmin ? "administrator" : userId
         }
     });
 
     return data.habits;
 }
 
-async function getCategoryHabits(category, page = 1, perPage = 10) {
+async function getCategoryHabits(userId, isAdmin, category, page = 1, perPage = 10) {
     const data = await this.get(
         `${BASE_HABITS_PATH}/category/${encodeURIComponent(category)}`, {
         params: {
@@ -46,35 +49,35 @@ async function getCategoryHabits(category, page = 1, perPage = 10) {
             habits_per_page: perPage
         },
         headers: {
-            "credentials": "test"
+            "credentials": isAdmin ? "administrator" : userId
         }
     });
 
     return data.habits;
 }
 
-async function addHabit(habit) {
+async function addHabit(userId, isAdmin, habit) {
     return this.post(`${BASE_HABITS_PATH}/`, {
         body: habit,
         headers: {
-            "credentials": "test"
+            "credentials": isAdmin ? "administrator" : userId
         }
     });
 }
 
-async function updateHabit(id, habit) {
+async function updateHabit(userId, isAdmin, id, habit) {
     return this.patch(`${BASE_HABITS_PATH}/${encodeURIComponent(id)}`, {
         body: habit,
         headers: {
-            "credentials": "test"
+            "credentials": isAdmin ? "administrator" : userId
         }
     });
 }
 
-async function deleteHabit(id) {
+async function deleteHabit(userId, isAdmin, id) {
     return this.delete(`${BASE_HABITS_PATH}/${encodeURIComponent(id)}`, {
         headers: {
-            "credentials": "test"
+            "credentials": isAdmin ? "administrator" : userId
         }
     });
 }

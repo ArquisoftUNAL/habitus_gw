@@ -1,29 +1,29 @@
 const resolvers = {
     Query: {
-        habitsByUser: async (_, { mode, page, per_page }, { dataSources }) => {
-            return dataSources.habitsAPI.getUserHabits(page, per_page, mode);
+        habitsByUser: async (_, { mode, page, per_page }, { dataSources, userId, isAdmin, }) => {
+            return dataSources.habitsAPI.getUserHabits(userId, isAdmin, page, per_page, mode);
         },
 
-        habitById: async (_, { id, mode }, { dataSources }) => {
-            return dataSources.habitsAPI.getHabit(id, mode);
+        habitById: async (_, { id, mode }, { dataSources, userId, isAdmin, }) => {
+            return dataSources.habitsAPI.getHabit(userId, isAdmin, id, mode);
         },
 
-        habitsByCategory: async (_, { id, page, per_page }, { dataSources }) => {
-            return dataSources.habitsAPI.getCategoryHabits(id, page, per_page);
+        habitsByCategory: async (_, { id, page, per_page }, { dataSources, userId, isAdmin, }) => {
+            return dataSources.habitsAPI.getCategoryHabits(userId, isAdmin, id, page, per_page);
         }
     },
 
     Mutation: {
-        addHabit: async (_, { habit }, { dataSources }) => {
-            return dataSources.habitsAPI.addHabit(habit);
+        addHabit: async (_, { habit }, { dataSources, userId, isAdmin, }) => {
+            return dataSources.habitsAPI.addHabit(userId, isAdmin, habit);
         },
 
-        updateHabit: async (_, { id, habit }, { dataSources }) => {
-            return dataSources.habitsAPI.updateHabit(id, habit);
+        updateHabit: async (_, { id, habit }, { dataSources, userId, isAdmin, }) => {
+            return dataSources.habitsAPI.updateHabit(userId, isAdmin, id, habit);
         },
 
-        deleteHabit: async (_, { id }, { dataSources }) => {
-            return dataSources.habitsAPI.deleteHabit(id);
+        deleteHabit: async (_, { id }, { dataSources, userId, isAdmin, }) => {
+            return dataSources.habitsAPI.deleteHabit(userId, isAdmin, id);
         }
     }
 };

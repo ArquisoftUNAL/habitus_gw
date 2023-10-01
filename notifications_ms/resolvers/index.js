@@ -10,8 +10,8 @@ const resolvers = {
             return dataSources.notificationsAPI.getNotification(id);
         },
 
-        getNotificationsUser: (_, { id }, { dataSources }) => {
-            return dataSources.notificationsAPI.getNotificationsUser(id);
+        getNotificationsUser: (_, __, { dataSources, userId }) => {
+            return dataSources.notificationsAPI.getNotificationsUser(userId);
         }
     },
 

@@ -1,17 +1,17 @@
 const BASE_CATEGORIES_PATH = "categories";
 
-async function getCategory(id) {
+async function getCategory(id, userId, isAdmin) {
     return this.get(
         `${BASE_CATEGORIES_PATH}/${encodeURIComponent(id)}`,
         {
             headers: {
-                "credentials": "administrator"
+                "credentials": isAdmin ? "administrator" : userId
             }
         }
     ).category;
 }
 
-async function getAllCategories(page = 1, perPage = 10) {
+async function getAllCategories(userId, isAdmin, page = 1, perPage = 10) {
     const data = await this.get(
         `${BASE_CATEGORIES_PATH}`, {
         params: {
@@ -19,35 +19,35 @@ async function getAllCategories(page = 1, perPage = 10) {
             categories_per_page: perPage
         },
         headers: {
-            "credentials": "administrator"
+            "credentials": isAdmin ? "administrator" : userId
         }
     });
 
     return data.categories;
 }
 
-async function addCategory(category) {
+async function addCategory(userId, isAdmin, category) {
     return this.post(`${BASE_CATEGORIES_PATH}/`, {
         body: category,
         headers: {
-            "credentials": "administrator"
+            "credentials": isAdmin ? "administrator" : userId
         }
     });
 }
 
-async function updateCategory(id, category) {
+async function updateCategory(userId, isAdmin, id, category) {
     return this.patch(`${BASE_CATEGORIES_PATH}/${encodeURIComponent(id)}`, {
         body: category,
         headers: {
-            "credentials": "administrator"
+            "credentials": isAdmin ? "administrator" : userId
         }
     });
 }
 
-async function deleteCategory(id) {
+async function deleteCategory(userId, isAdmin, id) {
     return this.delete(`${BASE_CATEGORIES_PATH}/${encodeURIComponent(id)}`, {
         headers: {
-            "credentials": "administrator"
+            "credentials": isAdmin ? "administrator" : userId
         }
     });
 }

@@ -1,6 +1,6 @@
 const BASE_EVENTS_PATH = "events";
 
-async function getEventsByHabit(habId, start_date, end_date, limit = 10) {
+async function getEventsByHabit(userId, isAdmin, habId, start_date, end_date, limit = 10) {
 
     if (!start_date)
         start_date = new Date().toISOString().split('T')[0];
@@ -17,7 +17,7 @@ async function getEventsByHabit(habId, start_date, end_date, limit = 10) {
             end_date: end_date
         },
         headers: {
-            "credentials": "test"
+            "credentials": isAdmin ? "administrator" : userId
         }
     });
 
