@@ -35,9 +35,9 @@ const typeDefs = `#graphql
     }
 
     extend type Mutation {
-        addHabitdata(habitdata: HabitDataCreate!): CreationResponse!
+        addHabitdata(data: HabitDataCreate!): CreationResponse!
 
-        updateHabitdata(datId: String!, habitdata: HabitDataUpdate!): HabitDataUpdateDeleteResponse!
+        updateHabitdata(datId: String!, data: HabitDataUpdate!): HabitDataUpdateDeleteResponse!
 
         deleteHabitdata(datId: String!): HabitDataUpdateDeleteResponse!
     }

@@ -1,12 +1,11 @@
 const BASE_CATEGORIES_PATH = "categories";
+const { generateRequestHeaders } = require("./../utils");
 
 async function getCategory(id, userId, isAdmin) {
     return this.get(
         `${BASE_CATEGORIES_PATH}/${encodeURIComponent(id)}`,
         {
-            headers: {
-                "credentials": isAdmin ? "administrator" : userId
-            }
+            headers: generateRequestHeaders(userId, isAdmin)
         }
     ).category;
 }
@@ -18,9 +17,7 @@ async function getAllCategories(userId, isAdmin, page = 1, perPage = 10) {
             categories_page: page,
             categories_per_page: perPage
         },
-        headers: {
-            "credentials": isAdmin ? "administrator" : userId
-        }
+        headers: generateRequestHeaders(userId, isAdmin)
     });
 
     return data.categories;
@@ -29,26 +26,20 @@ async function getAllCategories(userId, isAdmin, page = 1, perPage = 10) {
 async function addCategory(userId, isAdmin, category) {
     return this.post(`${BASE_CATEGORIES_PATH}/`, {
         body: category,
-        headers: {
-            "credentials": isAdmin ? "administrator" : userId
-        }
+        headers: generateRequestHeaders(userId, isAdmin)
     });
 }
 
 async function updateCategory(userId, isAdmin, id, category) {
     return this.patch(`${BASE_CATEGORIES_PATH}/${encodeURIComponent(id)}`, {
         body: category,
-        headers: {
-            "credentials": isAdmin ? "administrator" : userId
-        }
+        headers: generateRequestHeaders(userId, isAdmin)
     });
 }
 
 async function deleteCategory(userId, isAdmin, id) {
     return this.delete(`${BASE_CATEGORIES_PATH}/${encodeURIComponent(id)}`, {
-        headers: {
-            "credentials": isAdmin ? "administrator" : userId
-        }
+        headers: generateRequestHeaders(userId, isAdmin)
     });
 }
 

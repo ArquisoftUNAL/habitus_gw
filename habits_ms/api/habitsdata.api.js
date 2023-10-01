@@ -1,4 +1,5 @@
 const BASE_HABIT_DATA = "habitdata";
+const { generateRequestHeaders } = require("./../utils");
 
 async function getHabitdataById(userId, isAdmin, id) {
     const data = await this.get(
@@ -7,9 +8,7 @@ async function getHabitdataById(userId, isAdmin, id) {
             categories_page: page,
             categories_per_page: perPage
         },
-        headers: {
-            "credentials": isAdmin ? "administrator" : userId
-        }
+        headers: generateRequestHeaders(userId, isAdmin)
     });
 
     return data.data;
@@ -22,9 +21,7 @@ async function getHabitData(userId, isAdmin, habit, page = 1, perPage = 10) {
             data_page: page,
             data_per_page: perPage
         },
-        headers: {
-            "credentials": isAdmin ? "administrator" : userId
-        }
+        headers: generateRequestHeaders(userId, isAdmin)
     });
 
     return data.data;
@@ -37,37 +34,29 @@ async function getUsertData(userId, isAdmin, page = 1, perPage = 10) {
             data_page: page,
             data_per_page: perPage
         },
-        headers: {
-            "credentials": isAdmin ? "administrator" : userId
-        }
+        headers: generateRequestHeaders(userId, isAdmin)
     });
 
     return data.data;
 }
 
-async function addHabitdata(userId, isAdmin, recurrence) {
+async function addHabitdata(userId, isAdmin, data) {
     return this.post(`${BASE_HABIT_DATA}/`, {
-        body: recurrence,
-        headers: {
-            "credentials": isAdmin ? "administrator" : userId
-        }
+        body: data,
+        headers: generateRequestHeaders(userId, isAdmin)
     });
 }
 
-async function updateHabitdata(userId, isAdmin, id, recurrence) {
+async function updateHabitdata(userId, isAdmin, id, data) {
     return this.patch(`${BASE_HABIT_DATA}/${encodeURIComponent(id)}`, {
-        body: recurrence,
-        headers: {
-            "credentials": isAdmin ? "administrator" : userId
-        }
+        body: data,
+        headers: generateRequestHeaders(userId, isAdmin)
     });
 }
 
 async function deleteHabitdata(userId, isAdmin, id) {
     return this.delete(`${BASE_HABIT_DATA}/${encodeURIComponent(id)}`, {
-        headers: {
-            "credentials": isAdmin ? "administrator" : userId
-        }
+        headers: generateRequestHeaders(userId, isAdmin)
     });
 }
 

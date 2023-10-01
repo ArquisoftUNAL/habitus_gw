@@ -1,4 +1,5 @@
 const BASE_EVENTS_PATH = "events";
+const { generateRequestHeaders } = require("./../utils");
 
 async function getEventsByHabit(userId, isAdmin, habId, start_date, end_date, limit = 10) {
 
@@ -16,9 +17,7 @@ async function getEventsByHabit(userId, isAdmin, habId, start_date, end_date, li
             start_date: start_date,
             end_date: end_date
         },
-        headers: {
-            "credentials": isAdmin ? "administrator" : userId
-        }
+        headers: generateRequestHeaders(userId, isAdmin)
     });
 
     return data.events;

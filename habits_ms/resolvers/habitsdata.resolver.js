@@ -16,8 +16,8 @@ const resolvers = {
     },
 
     Mutation: {
-        addHabitdata: async (_, { habitdataData }, { dataSources, userId, isAdmin, }) => {
-            const result = await dataSources.habitsAPI.addHabitdata(userId, isAdmin, habitdataData);
+        addHabitdata: async (_, { data }, { dataSources, userId, isAdmin, }) => {
+            const result = await dataSources.habitsAPI.addHabitdata(userId, isAdmin, data);
 
             // Enqueue habit data update
             dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
@@ -25,10 +25,9 @@ const resolvers = {
             return result;
         },
 
-        updateHabitdata: async (_, { datId, habitdataData }, { dataSources, userId, isAdmin, }) => {
+        updateHabitdata: async (_, { datId, data }, { dataSources, userId, isAdmin, }) => {
             // Enqueue habit data update
-
-            const result = await dataSources.habitsAPI.updateHabitdata(userId, isAdmin, datId, habitdataData);
+            const result = await dataSources.habitsAPI.updateHabitdata(userId, isAdmin, datId, data);
 
             dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
 
