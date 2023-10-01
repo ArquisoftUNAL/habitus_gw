@@ -7,203 +7,734 @@
 	},
 	"item": [
 		{
-			"name": "Get general user habits",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query ExampleQuery {\r\n  habitsByUser {\r\n      hab_id\r\n  }\r\n}\r\n",
-						"variables": ""
-					}
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation RegisterAsUser {\r\n    createUser(\r\n        user: {\r\n            name: \"edgar134\"\r\n            email: \"edgardanielgd134@gmail.com\"\r\n            password: \"aaEE22341\"\r\n            birthDay: \"10-02-2003\"\r\n        }\r\n    ){\r\n        _id\r\n        jwt\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{gateway_url}}",
+							"host": [
+								"{{gateway_url}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation RegisterAsUser {\r\n    createUser(\r\n        user: {\r\n            name: \"edgar134\"\r\n            email: \"edgardanielgd134@gmail.com\"\r\n            password: \"aaEE22341\"\r\n            birthDay: \"10-02-2003\"\r\n        }\r\n    ){\r\n        _id\r\n        jwt\r\n    }\r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{gateway_url}}",
+									"host": [
+										"{{gateway_url}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "898"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 01 Oct 2023 04:15:10 GMT"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"382-/MWqtSzzBX87YodLuDOtg1vBFzs\""
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 6d90b034e8427072f3cb7201739b20b2.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "BOG50-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "Yvo3g0CjHPpi74QVpL6g9n-3xofbL8cZRZ7-HpbeT7mSnBDMph-Q1g=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": [\n        {\n            \"message\": \"409: Conflict\",\n            \"locations\": [\n                {\n                    \"line\": 2,\n                    \"column\": 5\n                }\n            ],\n            \"path\": [\n                \"createUser\"\n            ],\n            \"extensions\": {\n                \"response\": {\n                    \"url\": \"https://habitususers-t73ngcvn.b4a.run/users\",\n                    \"status\": 409,\n                    \"statusText\": \"Conflict\",\n                    \"body\": {\n                        \"message\": \"User already registered\"\n                    }\n                },\n                \"code\": \"INTERNAL_SERVER_ERROR\",\n                \"stacktrace\": [\n                    \"GraphQLError: 409: Conflict\",\n                    \"    at UsersAPI.errorFromResponse (/node_modules/@apollo/datasource-rest/dist/RESTDataSource.js:99:16)\",\n                    \"    at UsersAPI.throwIfResponseIsError (/node_modules/@apollo/datasource-rest/dist/RESTDataSource.js:91:26)\",\n                    \"    at /node_modules/@apollo/datasource-rest/dist/RESTDataSource.js:203:32\",\n                    \"    at processTicksAndRejections (node:internal/process/task_queues:96:5)\",\n                    \"    at async UsersAPI.fetch (/node_modules/@apollo/datasource-rest/dist/RESTDataSource.js:251:21)\",\n                    \"    at async UsersAPI.createUser (/users_ms/api/index.js:17:20)\"\n                ]\n            }\n        }\n    ],\n    \"data\": {\n        \"createUser\": null\n    }\n}"
+						}
+					]
 				},
-				"url": {
-					"raw": "localhost:4000",
-					"host": [
-						"localhost"
-					],
-					"port": "4000"
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE4YmFjMDQyMjA5YmExOTgxN2Y5ZDEiLCJfaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY5NjExOTY4OSwiZXhwIjoxNjk2MTYyODg5fQ.9LJcFWF80fHg85hQR-3Kg7V7ezW0fy5VB3b_Q-rsAjY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation LoginUser {\r\n    loginUser( user: {\r\n        email: \"edgardanielgd134@gmail.com\"\r\n        password: \"aaEE22341\"\r\n    }) \r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{gateway_url}}",
+							"host": [
+								"{{gateway_url}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE4YmFjMDQyMjA5YmExOTgxN2Y5ZDEiLCJfaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY5NjEzMzE2NSwiZXhwIjoxNjk2MTc2MzY1fQ.IeywIXHlMFOyUBgaqOJHFc3HvSTsJULh3PHscCN0cNU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation LoginUser {\r\n    loginUser( user: {\r\n        email: \"edgardanielgd134@gmail.com\"\r\n        password: \"aaEE22341\"\r\n    }) \r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{gateway_url}}",
+									"host": [
+										"{{gateway_url}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "221"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 01 Oct 2023 04:06:05 GMT"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"dd-+J1XWUDWiMO+ceJv1rYMwyVWm0s\""
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 2beba14c8979ba338e534793fa2224d6.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "BOG50-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "_wq8rRJeAjejgqMqtCcqhQ7y-wZTA015ttEiLOyH1hyb8E1lIY3EdQ=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"loginUser\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE4YmFjMDQyMjA5YmExOTgxN2Y5ZDEiLCJfaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY5NjEzMzE2NSwiZXhwIjoxNjk2MTc2MzY1fQ.IeywIXHlMFOyUBgaqOJHFc3HvSTsJULh3PHscCN0cNU\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Myself >:)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE4YmFjMDQyMjA5YmExOTgxN2Y5ZDEiLCJfaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY5NjEyMjIwNywiZXhwIjoxNjk2MTY1NDA3fQ.d_XRSXNRXDLl9qaVGPSOw-9fMhyvXF10d-erRZvBvZE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetMyself{\r\n    getCurrentUser {\r\n        _id\r\n        name\r\n        email\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{gateway_url}}",
+							"host": [
+								"{{gateway_url}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Myself >:)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE4YmFjMDQyMjA5YmExOTgxN2Y5ZDEiLCJfaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY5NjEzMzk4OSwiZXhwIjoxNjk2MTc3MTg5fQ.khF59cnRqvI8zQLD_btEJ6SsYNeXZCMr1RSl6RVgwjY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query GetMyself{\r\n    getCurrentUser {\r\n        _id\r\n        name\r\n        email\r\n    }\r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{gateway_url}}",
+									"host": [
+										"{{gateway_url}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "118"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 01 Oct 2023 04:15:16 GMT"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"76-YctEvrVGIel0A/niHCMtfznrJ7Y\""
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 6d90b034e8427072f3cb7201739b20b2.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "BOG50-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "Mo7PYjdZDJIUOguPc1AnU-CPcVRwACCaRnBSslh20kpNPycxZaIukw=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"getCurrentUser\": {\n            \"_id\": \"6518bac042209ba19817f9d1\",\n            \"name\": \"edgar134\",\n            \"email\": \"edgardanielgd134@gmail.com\"\n        }\n    }\n}"
+						}
+					]
 				}
-			},
-			"response": [
+			]
+		},
+		{
+			"name": "Habits",
+			"item": [
 				{
 					"name": "Get general user habits",
-					"originalRequest": {
+					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE4YmFjMDQyMjA5YmExOTgxN2Y5ZDEiLCJfaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY5NjEzMzk4OSwiZXhwIjoxNjk2MTc3MTg5fQ.khF59cnRqvI8zQLD_btEJ6SsYNeXZCMr1RSl6RVgwjY",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query ExampleQuery {\r\n  habitsByUser(id: \"edgar\") {\r\n    hab_color\r\n  }\r\n  \r\n  categories {\r\n      cat_name\r\n  }\r\n\r\n  eventsWithHabits(\r\n      id : \"edgar\",\r\n      start_date: \"2023-09-18\",\r\n      end_date: \"2024-09-30\"\r\n    ) {\r\n      date\r\n  }\r\n}\r\n",
+								"query": "query ExampleQuery {\r\n  habitsByUser {\r\n      hab_id\r\n      usr_id\r\n  }\r\n}\r\n",
 								"variables": ""
 							}
 						},
 						"url": {
-							"raw": "localhost:4000",
+							"raw": "{{gateway_url}}",
 							"host": [
-								"localhost"
-							],
-							"port": "4000"
+								"{{gateway_url}}"
+							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"response": [
 						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "cache-control",
-							"value": "no-store"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "740"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"2e4-AzGjTwtRIcWXHnKTF3IvG16Ni5M\""
-						},
-						{
-							"key": "Date",
-							"value": "Tue, 19 Sep 2023 19:38:13 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
+							"name": "Get general user habits",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query ExampleQuery {\r\n  habitsByUser(id: \"edgar\") {\r\n    hab_color\r\n  }\r\n  \r\n  categories {\r\n      cat_name\r\n  }\r\n\r\n  eventsWithHabits(\r\n      id : \"edgar\",\r\n      start_date: \"2023-09-18\",\r\n      end_date: \"2024-09-30\"\r\n    ) {\r\n      date\r\n  }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "localhost:4000",
+									"host": [
+										"localhost"
+									],
+									"port": "4000"
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "740"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2e4-AzGjTwtRIcWXHnKTF3IvG16Ni5M\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 19 Sep 2023 19:38:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"habitsByUser\": [\n            {\n                \"hab_color\": \"abcdef\"\n            },\n            {\n                \"hab_color\": \"abcdef\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"cat_name\": \"Test Category\"\n            },\n            {\n                \"cat_name\": \"Test Category\"\n            },\n            {\n                \"cat_name\": \"olade2\"\n            }\n        ],\n        \"eventsWithHabits\": [\n            {\n                \"date\": \"2023-10-27\"\n            },\n            {\n                \"date\": \"2023-11-10\"\n            },\n            {\n                \"date\": \"2023-11-24\"\n            },\n            {\n                \"date\": \"2023-12-08\"\n            },\n            {\n                \"date\": \"2023-12-22\"\n            },\n            {\n                \"date\": \"2024-01-05\"\n            },\n            {\n                \"date\": \"2024-01-19\"\n            },\n            {\n                \"date\": \"2024-02-02\"\n            },\n            {\n                \"date\": \"2024-02-16\"\n            },\n            {\n                \"date\": \"2024-03-01\"\n            },\n            {\n                \"date\": \"2024-03-15\"\n            },\n            {\n                \"date\": \"2024-03-29\"\n            },\n            {\n                \"date\": \"2024-04-12\"\n            },\n            {\n                \"date\": \"2024-04-26\"\n            },\n            {\n                \"date\": \"2024-05-10\"\n            },\n            {\n                \"date\": \"2024-05-24\"\n            },\n            {\n                \"date\": \"2024-06-07\"\n            },\n            {\n                \"date\": \"2024-06-21\"\n            },\n            {\n                \"date\": \"2024-07-05\"\n            },\n            {\n                \"date\": \"2024-07-19\"\n            },\n            {\n                \"date\": \"2024-08-02\"\n            },\n            {\n                \"date\": \"2024-08-16\"\n            },\n            {\n                \"date\": \"2024-08-30\"\n            },\n            {\n                \"date\": \"2024-09-13\"\n            },\n            {\n                \"date\": \"2024-09-27\"\n            }\n        ]\n    }\n}"
 						}
-					],
-					"cookie": [],
-					"body": "{\n    \"data\": {\n        \"habitsByUser\": [\n            {\n                \"hab_color\": \"abcdef\"\n            },\n            {\n                \"hab_color\": \"abcdef\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"cat_name\": \"Test Category\"\n            },\n            {\n                \"cat_name\": \"Test Category\"\n            },\n            {\n                \"cat_name\": \"olade2\"\n            }\n        ],\n        \"eventsWithHabits\": [\n            {\n                \"date\": \"2023-10-27\"\n            },\n            {\n                \"date\": \"2023-11-10\"\n            },\n            {\n                \"date\": \"2023-11-24\"\n            },\n            {\n                \"date\": \"2023-12-08\"\n            },\n            {\n                \"date\": \"2023-12-22\"\n            },\n            {\n                \"date\": \"2024-01-05\"\n            },\n            {\n                \"date\": \"2024-01-19\"\n            },\n            {\n                \"date\": \"2024-02-02\"\n            },\n            {\n                \"date\": \"2024-02-16\"\n            },\n            {\n                \"date\": \"2024-03-01\"\n            },\n            {\n                \"date\": \"2024-03-15\"\n            },\n            {\n                \"date\": \"2024-03-29\"\n            },\n            {\n                \"date\": \"2024-04-12\"\n            },\n            {\n                \"date\": \"2024-04-26\"\n            },\n            {\n                \"date\": \"2024-05-10\"\n            },\n            {\n                \"date\": \"2024-05-24\"\n            },\n            {\n                \"date\": \"2024-06-07\"\n            },\n            {\n                \"date\": \"2024-06-21\"\n            },\n            {\n                \"date\": \"2024-07-05\"\n            },\n            {\n                \"date\": \"2024-07-19\"\n            },\n            {\n                \"date\": \"2024-08-02\"\n            },\n            {\n                \"date\": \"2024-08-16\"\n            },\n            {\n                \"date\": \"2024-08-30\"\n            },\n            {\n                \"date\": \"2024-09-13\"\n            },\n            {\n                \"date\": \"2024-09-27\"\n            }\n        ]\n    }\n}"
-				}
-			]
-		},
-		{
-			"name": "Create habits",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation MyMutation {\r\n    addHabit (\r\n        habit: {\r\n            name: \"fafds\",\r\n            description: \"afas\",\r\n            is_favorite: true,\r\n            is_yn: true,\r\n            color: \"fdsawe\",\r\n            units: \"meters\",\r\n            goal: 1000,\r\n            frequency_type: \"weekly\",\r\n            category: \"7d792dcc-b73a-48dc-bf8d-65b7e846884d\"\r\n        }\r\n    ) {\r\n        id\r\n    }\r\n}",
-						"variables": ""
-					}
+					]
 				},
-				"url": {
-					"raw": "localhost:4000",
-					"host": [
-						"localhost"
-					],
-					"port": "4000"
-				}
-			},
-			"response": [
 				{
 					"name": "Create habits",
-					"originalRequest": {
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE4YmFjMDQyMjA5YmExOTgxN2Y5ZDEiLCJfaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY5NjEzMzE2NSwiZXhwIjoxNjk2MTc2MzY1fQ.IeywIXHlMFOyUBgaqOJHFc3HvSTsJULh3PHscCN0cNU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation MyMutation {\r\n    addHabit (\r\n        habit: {\r\n            name: \"fafds\",\r\n            description: \"afas\",\r\n            is_favorite: true,\r\n            is_yn: true,\r\n            color: \"fdsawe\",\r\n            units: \"meters\",\r\n            goal: 1000,\r\n            frequency_type: \"weekly\",\r\n            category: \"7ad4eb3a-9178-4e88-8bdd-84e65ee93cb2\"\r\n        }\r\n    ) {\r\n        id\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{gateway_url}}",
+							"host": [
+								"{{gateway_url}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create habits",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE4YmFjMDQyMjA5YmExOTgxN2Y5ZDEiLCJfaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY5NjEzMzE2NSwiZXhwIjoxNjk2MTc2MzY1fQ.IeywIXHlMFOyUBgaqOJHFc3HvSTsJULh3PHscCN0cNU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation MyMutation {\r\n    addHabit (\r\n        habit: {\r\n            name: \"fafds2\",\r\n            description: \"afas\",\r\n            is_favorite: true,\r\n            is_yn: true,\r\n            color: \"fdsawe\",\r\n            units: \"meters\",\r\n            goal: 1000,\r\n            frequency_type: \"weekly\",\r\n            category: \"7ad4eb3a-9178-4e88-8bdd-84e65ee93cb2\"\r\n        }\r\n    ) {\r\n        id\r\n    }\r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{gateway_url}}",
+									"host": [
+										"{{gateway_url}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "68"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 01 Oct 2023 04:06:46 GMT"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"44-ZDSeqG93IgVdUXcpB5AqqI2NEno\""
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 e9307a40cf41e7e9f0c4b8e6f2860dac.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "BOG50-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "RpLr10_VTNqJgbGnQZJGgJCSY7F6MXZdoRcsLqrFXF38e4r4bwlV8A=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"addHabit\": {\n            \"id\": \"4898671d-84e5-4ab3-8756-83069da70b81\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get categories",
+					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation MyMutation {\r\n    addHabit (\r\n        habit: {\r\n            name: \"fafds\",\r\n            description: \"afas\",\r\n            is_favorite: true,\r\n            is_yn: true,\r\n            color: \"fdsawe\",\r\n            units: \"meters\",\r\n            goal: 1000,\r\n            frequency_type: \"weekly\",\r\n            category: \"7d792dcc-b73a-48dc-bf8d-65b7e846884d\"\r\n        }\r\n    ) {\r\n        id\r\n    }\r\n}",
+								"query": "query GettingCategories {\r\n    categories {\r\n        cat_id\r\n        cat_name\r\n    }\r\n}",
 								"variables": ""
 							}
 						},
 						"url": {
-							"raw": "localhost:4000",
+							"raw": "{{gateway_url}}",
 							"host": [
-								"localhost"
-							],
-							"port": "4000"
+								"{{gateway_url}}"
+							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"response": [
 						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "cache-control",
-							"value": "no-store"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "68"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"44-aim6qrZ53lVHxZuCOT8r0uMtS6U\""
-						},
-						{
-							"key": "Date",
-							"value": "Fri, 22 Sep 2023 02:38:44 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
+							"name": "Get requests",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query GettingCategories {\r\n    categories {\r\n        cat_id\r\n        cat_name\r\n    }\r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "https://habitusgw-4rd4uo9b.b4a.run",
+									"protocol": "https",
+									"host": [
+										"habitusgw-4rd4uo9b",
+										"b4a",
+										"run"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "104"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 29 Sep 2023 18:13:04 GMT"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"68-W4xZqCTI6MpLQ/dIrzSYlAmirR0\""
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 40c99634272a5ae87f4f1698d4c22efc.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "BOG50-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "GsCLMVdiQbkfZsNz6dctM-cPhiHNEOr7ZqZd-DRmWZBnVkwC251Arw=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"categories\": [\n            {\n                \"cat_id\": \"7ad4eb3a-9178-4e88-8bdd-84e65ee93cb2\",\n                \"cat_name\": \"12312312dfasdf\"\n            }\n        ]\n    }\n}"
 						}
-					],
-					"cookie": [],
-					"body": "{\n    \"data\": {\n        \"addHabit\": {\n            \"id\": \"30102ab7-f75e-429a-a23c-a5bb22d37f5b\"\n        }\n    }\n}"
+					]
+				},
+				{
+					"name": "Add habit data",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE4YmFjMDQyMjA5YmExOTgxN2Y5ZDEiLCJfaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY5NjEzMzE2NSwiZXhwIjoxNjk2MTc2MzY1fQ.IeywIXHlMFOyUBgaqOJHFc3HvSTsJULh3PHscCN0cNU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation AddHabitData {\r\n    addHabitdata(\r\n        data: {\r\n            amount: 100\r\n            collected_at: \"2023-01-02\"\r\n            habit_id: \"0caca6bd-9139-4f20-98dc-3d71b03440d3\"\r\n        }\r\n    ){\r\n        message\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{gateway_url}}",
+							"host": [
+								"{{gateway_url}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE4YmFjMDQyMjA5YmExOTgxN2Y5ZDEiLCJfaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY5NjEzMzE2NSwiZXhwIjoxNjk2MTc2MzY1fQ.IeywIXHlMFOyUBgaqOJHFc3HvSTsJULh3PHscCN0cNU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation AddHabitData {\r\n    addHabitdata(\r\n        data: {\r\n            amount: 100\r\n            collected_at: \"2023-01-02\"\r\n            habit_id: \"0caca6bd-9139-4f20-98dc-3d71b03440d3\"\r\n        }\r\n    ){\r\n        message\r\n    }\r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{gateway_url}}",
+									"host": [
+										"{{gateway_url}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "72"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"48-NMDq6yItfW1QBlPECh2qhB1/EN8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 01 Oct 2023 04:43:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"addHabitdata\": {\n            \"message\": \"Habit data created successfully\"\n        }\n    }\n}"
+						}
+					]
 				}
 			]
 		},
 		{
-			"name": "Enqueue notification",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation MyMutation {\r\n    enqueueNotification(\r\n        data: [\r\n            {\r\n                title: \"ola\"\r\n                body: \"ola\",\r\n                init_date: \"faf\",\r\n                user_id: \"fsdfa\",\r\n                should_email: false\r\n            },\r\n            {\r\n                title: \"ola\"\r\n                body: \"ola\",\r\n                init_date: \"faf\",\r\n                user_id: \"fsdfa\",\r\n                should_email: false\r\n            },\r\n            {\r\n                title: \"ola\"\r\n                body: \"ola\",\r\n                init_date: \"faf\",\r\n                user_id: \"fsdfa\",\r\n                should_email: false\r\n            }\r\n        ]\r\n    ) {\r\n        message\r\n    }\r\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "localhost:4000",
-					"host": [
-						"localhost"
-					],
-					"port": "4000"
-				}
-			},
-			"response": [
+			"name": "Notifications",
+			"item": [
 				{
 					"name": "Enqueue notification",
-					"originalRequest": {
+					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -214,58 +745,112 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:4000",
+							"raw": "{{gateway_url}}",
 							"host": [
-								"localhost"
-							],
-							"port": "4000"
+								"{{gateway_url}}"
+							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"response": [
 						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "cache-control",
-							"value": "no-store"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "67"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"43-1z11LAXAnpkrwcJ33S7GrJlGEhY\""
-						},
-						{
-							"key": "Date",
-							"value": "Sat, 23 Sep 2023 04:03:26 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
+							"name": "Enqueue notification",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation MyMutation {\r\n    enqueueNotification(\r\n        data: [\r\n            {\r\n                title: \"ola\"\r\n                body: \"ola\",\r\n                init_date: \"faf\",\r\n                user_id: \"fsdfa\",\r\n                should_email: false\r\n            },\r\n            {\r\n                title: \"ola\"\r\n                body: \"ola\",\r\n                init_date: \"faf\",\r\n                user_id: \"fsdfa\",\r\n                should_email: false\r\n            },\r\n            {\r\n                title: \"ola\"\r\n                body: \"ola\",\r\n                init_date: \"faf\",\r\n                user_id: \"fsdfa\",\r\n                should_email: false\r\n            }\r\n        ]\r\n    ) {\r\n        message\r\n    }\r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "localhost:4000",
+									"host": [
+										"localhost"
+									],
+									"port": "4000"
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "67"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"43-1z11LAXAnpkrwcJ33S7GrJlGEhY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 23 Sep 2023 04:03:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"enqueueNotification\": {\n            \"message\": \"Notifications sent!\"\n        }\n    }\n}"
 						}
-					],
-					"cookie": [],
-					"body": "{\n    \"data\": {\n        \"enqueueNotification\": {\n            \"message\": \"Notifications sent!\"\n        }\n    }\n}"
+					]
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "gateway_url",
+			"value": "localhost:4000",
+			"type": "string"
+		},
+		{
+			"key": "user_token",
+			"value": "",
+			"type": "string"
 		}
 	]
 }
