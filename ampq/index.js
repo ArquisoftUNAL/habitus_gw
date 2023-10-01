@@ -1,7 +1,8 @@
 const { AMQPPubSub } = require('graphql-amqp-subscriptions');
 const amqp = require("amqplib");
 const {
-    QUEUE_URL, NOTIFICATIONS_QUEUE, HABITS_UPDATE_QUEUE,
+    QUEUE_URL, QUEUE_PROTOCOL, QUEUE_VHOST, QUEUE_PORT,
+    NOTIFICATIONS_QUEUE, HABITS_UPDATE_QUEUE,
     NOTIFICATIONS_EXCHANGE, HABITS_UPDATE_EXCHANGE,
     NOTIFICATIONS_QUEUE_USERNAME, NOTIFICATIONS_QUEUE_PASSWORD,
     HABITS_UPDATE_QUEUE_USERNAME, HABITS_UPDATE_QUEUE_PASSWORD
@@ -11,15 +12,15 @@ const amqpNotifications = () =>
     new Promise((resolve, reject) =>
         amqp
             .connect({
-                protocol: "amqp",
+                protocol: QUEUE_PROTOCOL,
                 hostname: QUEUE_URL,
-                port: 5672,
+                port: QUEUE_PORT,
                 username: NOTIFICATIONS_QUEUE_USERNAME,
                 password: NOTIFICATIONS_QUEUE_PASSWORD,
                 locale: "en_US",
                 frameMax: 0,
                 heartbeat: 0,
-                vhost: "/",
+                vhost: QUEUE_VHOST,
             })
             .then((conn) => {
                 const pubsub = new AMQPPubSub({
@@ -59,15 +60,15 @@ const amqpHabits = () =>
     new Promise((resolve, reject) =>
         amqp
             .connect({
-                protocol: "amqp",
+                protocol: QUEUE_PROTOCOL,
                 hostname: QUEUE_URL,
-                port: 5672,
+                port: QUEUE_PORT,
                 username: HABITS_UPDATE_QUEUE_USERNAME,
                 password: HABITS_UPDATE_QUEUE_PASSWORD,
                 locale: "en_US",
                 frameMax: 0,
                 heartbeat: 0,
-                vhost: "/",
+                vhost: QUEUE_VHOST,
             })
             .then((conn) => {
                 const pubsub = new AMQPPubSub({

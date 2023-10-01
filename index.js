@@ -7,11 +7,7 @@ const UsersAPI = require('./users_ms/api');
 const StatisticsAPI = require('./statistics_ms/api');
 const AchievementsAPI = require("./achievements_ms/api");
 const NotificationsAPI = require('./notifications_ms/api');
-
-const dotenv = require('dotenv');
-dotenv.config();
-
-const PORT = process.env.PORT || 4000;
+const { PORT } = require('./config');
 
 (async () => {
     // Try to connect to RabbitMQ
