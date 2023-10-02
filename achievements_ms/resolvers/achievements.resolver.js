@@ -3,14 +3,14 @@ const checkHabitOwnership = require('../../utils/checkHabitOwnership');
 
 const resolvers = {
     Query: {
-        achievementsByHabit: async (_, { id }, { dataSources, userId, isAdmin }) => {
+        achievementsByHabit: async (_, { id, page, per_page }, { dataSources, userId, isAdmin }) => {
             // Check first if user is allowed to access this habit
             const allowed = await checkHabitOwnership(dataSources.habitsAPI, userId, isAdmin, id);
 
             if (!allowed) {
                 throw new GraphQLError("You are not allowed to access this habit.");
             }
-            return dataSources.achievementsAPI.getHabitAchievements(id);
+            return dataSources.achievementsAPI.getHabitAchievements(id, page, per_page);
         }
     },
 
@@ -46,12 +46,8 @@ const resolvers = {
             return dataSources.achievementsAPI.updateAchievementStreak(id, retainStreak);
         },
 
-        notifyStreakUpdate: async (_, { hab_id, streak }, { dataSources }) => {
-            // return dataSources.achievementsAPI.notifyStreakUpdate(hab_id, streak);
-            return {
-                status: 200,
-                message: "Streak updated successfully."
-            }
+        notifyStreakUpdate: async (_, { hab_id, freq_type, streak }, { dataSources }) => {
+            return dataSources.achievementsAPI.notifyStreakUpdate(hab_id, freq_type, streak);
         }
 
     }
