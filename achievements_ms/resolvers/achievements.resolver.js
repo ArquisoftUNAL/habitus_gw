@@ -31,7 +31,7 @@ const resolvers = {
         },
 
         updateAchievement: async (_, { achievement }, { dataSources, userId, isAdmin }) => {
-            if (achievement.habit) {
+            if (achievement.habId) {
                 // Check first if user is allowed to access this habit
                 const allowed = await checkHabitOwnership(dataSources.habitsAPI, userId, isAdmin, achievement.habId);
 
