@@ -23,11 +23,12 @@ const resolvers = {
             // Enqueue habit data update
             dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
 
-            try {
-                await notifyHabitUpdate(dataSources, result);
-            } catch (e) {
-                console.log(e);
-            }
+            // try {
+            //     const updateResult = await notifyHabitUpdate(dataSources, result);
+            // } catch (e) {
+            //     console.log("pasa");
+            //     console.log(e);
+            // }
 
             return result;
         },
@@ -38,11 +39,11 @@ const resolvers = {
 
             dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
 
-            try {
-                await notifyHabitUpdate(dataSources, result);
-            } catch (e) {
-                console.log(e);
-            }
+            // try {
+            //     await notifyHabitUpdate(dataSources, result);
+            // } catch (e) {
+            //     console.log(e);
+            // }
 
             return result;
         },
@@ -53,11 +54,11 @@ const resolvers = {
             // Enqueue habit data update
             dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
 
-            try {
-                await notifyHabitUpdate(dataSources, result);
-            } catch (e) {
-                console.log(e);
-            }
+            // try {
+            //     await notifyHabitUpdate(dataSources, result);
+            // } catch (e) {
+            //     console.log(e);
+            // }
 
             return result;
         }
