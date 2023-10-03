@@ -24,7 +24,7 @@ class NotificationsAPI extends RESTDataSource {
     async getNotificationsUser(id) {
         const response = await this.get(
             `${BASE_PATH}/get_notifications_user`,
-            { params: { id } }
+            { params: { usr_id: id } }
         );
         return response;
     }
