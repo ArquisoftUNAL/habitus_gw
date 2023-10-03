@@ -13,7 +13,7 @@ const notifyHabitUpdate = async (dataSources, habitDataResult,) => {
 
     // First, get from statistics the last streak
     let statisticsStreakData = await dataSources.statisticsAPI.getMeasureStreaks(
-        result.data.hab_id
+        habitDataResult.data.hab_id
     ).data;
 
     if (!statisticsStreakData)
@@ -40,7 +40,7 @@ const notifyHabitUpdate = async (dataSources, habitDataResult,) => {
     const dateEnd = datePair[1];
 
     let lastStreakData = {
-        id: result.data.hab_id,
+        id: habitDataResult.data.hab_id,
         freq_type: habitData.hab_freq_type,
         streak: {
             date_start: dateStart,
