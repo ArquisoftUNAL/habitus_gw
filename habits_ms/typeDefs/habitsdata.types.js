@@ -29,13 +29,13 @@ const typeDefs = `#graphql
     }
 
     extend type Query {
-        habitdataById(id: String!): HabitsDataCreateResponse!
+        habitdataById(id: String!): HabitData!
         habitdataByHabit(id: String!, page: Int, per_page: Int): [HabitData]!
         habitdataByUser(page: Int, per_page: Int): [HabitData]!
     }
 
     extend type Mutation {
-        addHabitdata(data: HabitDataCreate!): CreationResponse!
+        addHabitdata(data: HabitDataCreate!): HabitsDataCreateResponse!
 
         updateHabitdata(datId: String!, data: HabitDataUpdate!): HabitDataUpdateDeleteResponse!
 
