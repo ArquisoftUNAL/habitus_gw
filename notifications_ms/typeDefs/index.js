@@ -1,12 +1,13 @@
 const typeDefs = `#graphql
     type Notification {
-        not_id: String!
-        not_title: String!
-        not_body: String!
-        not_init_date: String!
-        not_type: String!
-        not_active: Boolean!
-        not_should_email: Boolean!
+        noti_id: String
+        noti_title: String!
+        noti_body: String!
+        noti_init_date: String!
+        noti_type: String!
+        noti_active: Boolean!
+        noti_should_email: Boolean!
+        noti_email: String!
         usr_id: String!
     }
 
@@ -19,16 +20,18 @@ const typeDefs = `#graphql
         body: String!
         init_date: String!
         should_email: Boolean!
+        email: String!
         user_id: String!
     }
 
     input NotificationInsert {
-        not_title: String!
-        not_body: String!
-        not_init_date: String!
-        not_type: String!
-        not_active: Boolean!
-        not_should_email: Boolean!
+        noti_title: String!
+        noti_body: String!
+        noti_init_date: String!
+        noti_type: String!
+        noti_active: Boolean!
+        noti_should_email: Boolean!
+        noti_email: String!
         usr_id: String!
     }
 

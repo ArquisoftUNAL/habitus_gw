@@ -26,7 +26,10 @@ const resolvers = {
                 }
 
                 try {
-                    await dataSources.notificationsQueue.publish(NOTIFICATIONS_QUEUE, notification);
+                    await dataSources.notificationsQueue.publish(NOTIFICATIONS_QUEUE, {
+                        ...notification,
+                        email: "edgonzalezdi@unal.edu.co"
+                    });
                 } catch (err) {
                     console.log(err);
 

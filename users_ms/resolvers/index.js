@@ -6,6 +6,9 @@ module.exports = {
     validateToken: async (_, __, { dataSources, ___, _____, token }) => {
       return dataSources.usersAPI.validateToken(token);
     },
+    getUserById: async (_, { id }, { dataSources }) => {
+      return dataSources.usersAPI.getUserById(id);
+    }
   },
 
   Mutation: {

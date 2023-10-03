@@ -1,4 +1,5 @@
 const { HABITS_UPDATE_QUEUE } = require('./../../config');
+const { notifyHabitUpdate } = require('./../utils');
 
 const resolvers = {
     Query: {
@@ -22,6 +23,12 @@ const resolvers = {
             // Enqueue habit data update
             dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
 
+            try {
+                await notifyHabitUpdate(dataSources, result);
+            } catch (e) {
+                console.log(e);
+            }
+
             return result;
         },
 
@@ -31,6 +38,12 @@ const resolvers = {
 
             dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
 
+            try {
+                await notifyHabitUpdate(dataSources, result);
+            } catch (e) {
+                console.log(e);
+            }
+
             return result;
         },
 
@@ -39,6 +52,12 @@ const resolvers = {
 
             // Enqueue habit data update
             dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
+
+            try {
+                await notifyHabitUpdate(dataSources, result);
+            } catch (e) {
+                console.log(e);
+            }
 
             return result;
         }

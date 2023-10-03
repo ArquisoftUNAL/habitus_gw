@@ -8,6 +8,7 @@ const checkHabitOwnership = async (habitsAPI, userId, isAdmin, habId) => {
         }
     }
     catch (err) {
+        console.log(err);
         return false;
     }
 

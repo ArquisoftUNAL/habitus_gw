@@ -27,6 +27,7 @@ module.exports = `#graphql
     extend type Query {
         getCurrentUser: User
         validateToken: Boolean
+        getUserById(id : String!): User
     }
 
     extend type Mutation {

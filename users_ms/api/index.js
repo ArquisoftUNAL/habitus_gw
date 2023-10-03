@@ -13,6 +13,12 @@ class UsersAPI extends RESTDataSource {
     return response;
   }
 
+  async getUserById(id) {
+    const response = await this.get(`users/${id}`);
+
+    return response;
+  }
+
   async createUser(user) {
     const result = await this.fetch(`users`, {
       method: "POST",

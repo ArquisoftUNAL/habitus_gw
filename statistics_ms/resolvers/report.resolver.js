@@ -5,7 +5,7 @@ const resolvers = {
     Query: {
         reportMeasureHabit: async (_, { id }, { dataSources, userId, isAdmin }) => {
             // Check first if user is allowed to access this habit
-            const allowed = await checkHabitOwnership(dataSources.habitsAPI, userId, isAdmin, achievement.habit);
+            const allowed = await checkHabitOwnership(dataSources.habitsAPI, userId, isAdmin, id);
 
             if (!allowed) {
                 throw new GraphQLError("You are not allowed to access this habit.");
@@ -15,7 +15,7 @@ const resolvers = {
 
         reportYnHabit: async (_, { id }, { dataSources, userId, isAdmin }) => {
             // Check first if user is allowed to access this habit
-            const allowed = await checkHabitOwnership(dataSources.habitsAPI, userId, isAdmin, achievement.habit);
+            const allowed = await checkHabitOwnership(dataSources.habitsAPI, userId, isAdmin, id);
 
             if (!allowed) {
                 throw new GraphQLError("You are not allowed to access this habit.");
