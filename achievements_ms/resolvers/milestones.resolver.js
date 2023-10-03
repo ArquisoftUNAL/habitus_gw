@@ -1,7 +1,7 @@
 const resolvers = {
     Query: {
-        milestonesByAchievement: async (_, { id }, { dataSources }) => {
-            return dataSources.achievementsAPI.getAchievementMilestones(id);
+        milestonesByAchievement: async (_, { id, page, per_page }, { dataSources }) => {
+            return dataSources.achievementsAPI.getAchievementMilestones(id, page, per_page);
         }
     },
 

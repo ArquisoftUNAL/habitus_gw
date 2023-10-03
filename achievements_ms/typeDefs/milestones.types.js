@@ -28,7 +28,7 @@ const typeDefs = `#graphql
     }
 
     extend type Query {
-        milestonesByAchievement(id: String!): MilestoneList!
+        milestonesByAchievement(id: String!, page: Int, per_page: Int): MilestoneList!
     }
 
     extend type Mutation {

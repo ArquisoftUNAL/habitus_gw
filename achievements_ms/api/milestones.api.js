@@ -1,8 +1,12 @@
 const BASE_MILESTONES_PATH = "milestones";
 
-async function getAchievementMilestones(id) {
+async function getAchievementMilestones(id, page, per_page) {
+
+    if (!page) page = 1;
+    if (!per_page) per_page = 10;
+
     return this.get(
-        `${BASE_MILESTONES_PATH}/${encodeURIComponent(id)}`);
+        `${BASE_MILESTONES_PATH}/${encodeURIComponent(id)}/${page}/${per_page}`);
 }
 
 async function addMilestone(milestone) {
