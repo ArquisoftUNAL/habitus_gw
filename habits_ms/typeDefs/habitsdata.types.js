@@ -30,8 +30,8 @@ const typeDefs = `#graphql
 
     extend type Query {
         habitdataById(id: String!): HabitData!
-        habitdataByHabit(id: String!, page: Int, per_page: Int): [HabitData]!
-        habitdataByUser(page: Int, per_page: Int): [HabitData]!
+        habitdataByHabit(id: String!, start_date : String, end_date: String, page: Int, per_page: Int): [HabitData]!
+        habitdataByUser(start_date : String, end_date: String, page: Int, per_page: Int): [HabitData]!
     }
 
     extend type Mutation {

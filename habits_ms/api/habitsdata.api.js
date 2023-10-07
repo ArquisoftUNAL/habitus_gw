@@ -14,26 +14,64 @@ async function getHabitdataById(userId, isAdmin, id) {
     return data.data;
 }
 
-async function getHabitData(userId, isAdmin, habit, page = 1, perPage = 10) {
+async function getHabitData(
+    userId, isAdmin, habit,
+    page = null, perPage = null, start_date = null, end_date = null
+) {
+
+    let params = {};
+
+    if (start_date) {
+        params.start_date = start_date;
+    }
+
+    if (end_date) {
+        params.end_date = end_date;
+    }
+
+    if (page) {
+        params.data_page = page;
+    }
+
+    if (perPage) {
+        params.data_per_page = perPage;
+    }
+
     const data = await this.get(
         `${BASE_HABIT_DATA}/habit/${encodeURIComponent(habit)}`, {
-        params: {
-            data_page: page,
-            data_per_page: perPage
-        },
+        params: params,
         headers: generateRequestHeaders(userId, isAdmin)
     });
 
     return data.data;
 }
 
-async function getUsertData(userId, isAdmin, page = 1, perPage = 10) {
+async function getUserHabitData(
+    userId, isAdmin,
+    page = null, perPage = null, start_date = null, end_date = null
+) {
+
+    let params = {};
+
+    if (start_date) {
+        params.start_date = start_date;
+    }
+
+    if (end_date) {
+        params.end_date = end_date;
+    }
+
+    if (page) {
+        params.data_page = page;
+    }
+
+    if (perPage) {
+        params.data_per_page = perPage;
+    }
+
     const data = await this.get(
         `${BASE_HABIT_DATA}`, {
-        params: {
-            data_page: page,
-            data_per_page: perPage
-        },
+        params: params,
         headers: generateRequestHeaders(userId, isAdmin)
     });
 
@@ -63,7 +101,7 @@ async function deleteHabitdata(userId, isAdmin, id) {
 module.exports = (HabitsAPI) => {
     HabitsAPI.prototype.getHabitdataById = getHabitdataById;
     HabitsAPI.prototype.getHabitData = getHabitData;
-    HabitsAPI.prototype.getUsertData = getUsertData;
+    HabitsAPI.prototype.getUserHabitData = getUserHabitData;
     HabitsAPI.prototype.addHabitdata = addHabitdata;
     HabitsAPI.prototype.updateHabitdata = updateHabitdata;
     HabitsAPI.prototype.deleteHabitdata = deleteHabitdata;

@@ -4,7 +4,7 @@ const generateRequestHeaders = (userId, isAdmin) => {
     }
 
     return {
-        "credentials": isAdmin ? "administrator" : userId
+        "user_id": isAdmin ? "administrator" : userId
     }
 }
 

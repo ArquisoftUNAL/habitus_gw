@@ -7,12 +7,12 @@ const resolvers = {
             return dataSources.habitsAPI.getHabitdataById(userId, isAdmin, id);
         },
 
-        habitdataByHabit: async (_, { id, page, per_page }, { dataSources, userId, isAdmin, }) => {
-            return dataSources.habitsAPI.getHabiteData(userId, isAdmin, id, page, per_page);
+        habitdataByHabit: async (_, { id, start_date, end_date, page, per_page }, { dataSources, userId, isAdmin, }) => {
+            return dataSources.habitsAPI.getHabiteData(userId, isAdmin, id, page, per_page, start_date, end_date);
         },
 
-        habitdataByUser: async (_, { page, per_page }, { dataSources, userId, isAdmin, }) => {
-            return dataSources.habitsAPI.getUsertData(userId, isAdmin, page, per_page);
+        habitdataByUser: async (_, { start_date, end_date, page, per_page }, { dataSources, userId, isAdmin, }) => {
+            return dataSources.habitsAPI.getUserHabitData(userId, isAdmin, page, per_page, start_date, end_date);
         }
     },
 
@@ -23,13 +23,6 @@ const resolvers = {
             // Enqueue habit data update
             dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
 
-            // try {
-            //     const updateResult = await notifyHabitUpdate(dataSources, result);
-            // } catch (e) {
-            //     console.log("pasa");
-            //     console.log(e);
-            // }
-
             return result;
         },
 
@@ -39,12 +32,6 @@ const resolvers = {
 
             dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
 
-            // try {
-            //     await notifyHabitUpdate(dataSources, result);
-            // } catch (e) {
-            //     console.log(e);
-            // }
-
             return result;
         },
 
@@ -53,12 +40,6 @@ const resolvers = {
 
             // Enqueue habit data update
             dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
-
-            // try {
-            //     await notifyHabitUpdate(dataSources, result);
-            // } catch (e) {
-            //     console.log(e);
-            // }
 
             return result;
         }
