@@ -43,7 +43,7 @@ async function getHabitData(
         headers: generateRequestHeaders(userId, isAdmin)
     });
 
-    return data.data;
+    return data.habit_data;
 }
 
 async function getUserHabitData(
@@ -75,7 +75,7 @@ async function getUserHabitData(
         headers: generateRequestHeaders(userId, isAdmin)
     });
 
-    return data.data;
+    return data.habit_data;
 }
 
 async function addHabitdata(userId, isAdmin, data) {

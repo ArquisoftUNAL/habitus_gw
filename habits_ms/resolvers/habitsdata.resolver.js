@@ -8,7 +8,7 @@ const resolvers = {
         },
 
         habitdataByHabit: async (_, { id, start_date, end_date, page, per_page }, { dataSources, userId, isAdmin, }) => {
-            return dataSources.habitsAPI.getHabiteData(userId, isAdmin, id, page, per_page, start_date, end_date);
+            return dataSources.habitsAPI.getHabitData(userId, isAdmin, id, page, per_page, start_date, end_date);
         },
 
         habitdataByUser: async (_, { start_date, end_date, page, per_page }, { dataSources, userId, isAdmin, }) => {
