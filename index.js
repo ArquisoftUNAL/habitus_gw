@@ -34,10 +34,6 @@ const { PORT } = require('./config');
     const server = new ApolloServer({
         typeDefs,
         resolvers,
-        // subscriptions: {
-        //     onConnect: () => ({ habitsQueue, notificationsQueue }),
-        //     onDisconnect: () => console.log("Disconnected from RabbitMQ")
-        // },
     });
 
     const { url } = await startStandaloneServer(server, {
@@ -62,11 +58,15 @@ const { PORT } = require('./config');
             let isAdmin = false;
 
             if (token) {
+
                 try {
                     const user = await dataSources.usersAPI.getCurrentUser(token);
                     userId = user._id;
                     isAdmin = user.isAdmin;
-                } catch (e) { }
+                } catch (e) {
+                    console.log("Error authenticating user");
+                    console.log(e);
+                }
             }
 
             return { dataSources, userId, isAdmin, token };

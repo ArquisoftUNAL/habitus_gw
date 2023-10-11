@@ -13,6 +13,7 @@ const typeDefs = `#graphql
         hab_units: String!
         hab_goal: Float!
         hab_freq_type: String!
+        cat_id: String!
         data: [HabitData]
     }
 

@@ -24,8 +24,6 @@ const typeDefs = `#graphql
 
     input HabitDataUpdate {
         amount: Float
-        collected_at: String
-        recurrence_id: String
     }
 
     extend type Query {
