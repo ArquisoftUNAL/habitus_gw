@@ -15,6 +15,9 @@ module.exports = {
     createUser: async (_, { user }, { dataSources }) => {
       return dataSources.usersAPI.createUser(user);
     },
+    updateUser: async (_, { user }, { dataSources, ___, ____, token }) => {
+      return dataSources.usersAPI.updateUser(user, token);
+    },
     loginUser: async (_, { user }, { dataSources }) => {
       return dataSources.usersAPI.loginUser(user);
     },

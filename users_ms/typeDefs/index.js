@@ -19,6 +19,13 @@ module.exports = `#graphql
         birthDay: String
     }
 
+    input UserUpdate {
+        name: String
+        email: String
+        password: String
+        birthDay: String
+    }
+
     input UserLogin {
         email: String!
         password: String!
@@ -32,6 +39,7 @@ module.exports = `#graphql
 
     extend type Mutation {
         createUser(user: UserCreate!): User
+        updateUser(user: UserUpdate!): User
         loginUser(user: UserLogin!): String!
         logoutUser: SimpleMessage
         deleteUser: User

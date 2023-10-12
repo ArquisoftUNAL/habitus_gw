@@ -50,9 +50,9 @@ const typeDefs = `#graphql
     extend type Mutation {
         addHabit(habit: HabitCreate!): CreationResponse
 
-        updateHabit(habId: String!, habit: HabitUpdate!): GeneralResponse
+        updateHabit(id: String!, habit: HabitUpdate!): GeneralResponse
 
-        deleteHabit(habId: String!): GeneralResponse
+        deleteHabit(id: String!): GeneralResponse
     }
 `;
 

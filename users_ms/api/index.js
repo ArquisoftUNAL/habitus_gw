@@ -34,6 +34,15 @@ class UsersAPI extends RESTDataSource {
     }; // Append jwt to user object
   }
 
+  async updateUser(user) {
+    const result = await this.fetch(`users/me`, {
+      method: "PATCH",
+      body: user
+    });
+
+    return result.parsedBody;
+  }
+
   async validateToken(jwt) {
     const response = await this.get(`auth/token`, {
       headers: { "x-auth-token": jwt },
