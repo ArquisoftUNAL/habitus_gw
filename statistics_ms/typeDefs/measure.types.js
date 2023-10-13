@@ -6,11 +6,11 @@ const typeDefs = `#graphql
     }
 
     type MeaasureResumeData {
-        toDay: MeasureResumeTimeData!
-        week: MeasureResumeTimeData!
-        month: MeasureResumeTimeData!
-        semester: MeasureResumeTimeData!
-        year: MeasureResumeTimeData!
+        toDay: MeasureResumeTimeData
+        week: MeasureResumeTimeData
+        month: MeasureResumeTimeData
+        semester: MeasureResumeTimeData
+        year: MeasureResumeTimeData
     }
 
     type MeasureHistoryTimeData {

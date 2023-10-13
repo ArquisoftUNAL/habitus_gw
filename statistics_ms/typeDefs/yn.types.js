@@ -1,10 +1,10 @@
 const typeDefs = `#graphql
 
     type YnResumeData {
-        month: Float!
-        semester: Float!
-        year: Float!
-        total: Int!
+        month: Float
+        semester: Float
+        year: Float
+        total: Int
     }
 
     type YnHistoryTimeData {
@@ -12,10 +12,10 @@ const typeDefs = `#graphql
     }
 
     type YnHistoryData {
-        week: YnHistoryTimeData!
-        month: YnHistoryTimeData!
-        semester: YnHistoryTimeData!
-        year: YnHistoryTimeData!
+        week: YnHistoryTimeData
+        month: YnHistoryTimeData
+        semester: YnHistoryTimeData
+        year: YnHistoryTimeData
     }
 
     type YnStreak {

@@ -1403,27 +1403,21 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFiODJjODNiNzVmNGFiZTljMTNlY2YiLCJfaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY5NzAyOTQzNiwiZXhwIjoxNjk3MDcyNjM2fQ.744MimABE64x4UBPIq1p3zokHjU5VRlx6-nbjoP02Rc",
+								"value": "{{user_token}}",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query GetHabitOcurrences(\n    $habitId: String!\n    $startDate: String!\n    $endDate: String!\n  ) {\n    habitdataByHabit(id: $habitId, start_date: $startDate, end_date: $endDate) {\n      hab_dat_collected_at\n      hab_dat_amount\n    }\n  }",
-								"variables": "{\n  \"habitId\": \"aad375a3-084d-432c-b42e-a35cb61ea46e\",\n  \"startDate\": \"2020-10-1\",\n  \"endDate\": \"2023-10-18\"\n}"
+								"query": "query GetUserHabitData {\r\n    habitdataByUser (\r\n        start_date: \"2023-10-1\",\r\n        end_date: \"2023-10-8\"\r\n    ){\r\n        hab_dat_amount\r\n        hab_dat_id\r\n    }\r\n}",
+								"variables": ""
 							}
 						},
 						"url": {
-							"raw": "https://habitusgw-4rd4uo9b.b4a.run/",
-							"protocol": "https",
+							"raw": "{{gateway_url}}",
 							"host": [
-								"habitusgw-4rd4uo9b",
-								"b4a",
-								"run"
-							],
-							"path": [
-								""
+								"{{gateway_url}}"
 							]
 						}
 					},
@@ -1524,7 +1518,77 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get habits full data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{user_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query UserHabitsCategories(\r\n        $habits_page: Int!\r\n        $habits_per_page: Int!\r\n        $categories_page: Int!\r\n        $categories_per_page: Int!\r\n        $habits_data_page: Int!\r\n        $habits_data_per_page: Int!\r\n        $start_date: String!\r\n        $end_date: String!\r\n    ) {\r\n        habitsByUser(\r\n            page: $habits_page\r\n            per_page: $habits_per_page\r\n        ) {\r\n            hab_id\r\n            cat_id\r\n            hab_name\r\n            hab_description\r\n            hab_is_yn\r\n        }\r\n\r\n        habitdataByUser(\r\n            start_date: $start_date\r\n            end_date: $end_date\r\n            page: $habits_data_page\r\n            per_page: $habits_data_per_page\r\n        ) {\r\n            hab_dat_id\r\n            hab_dat_amount\r\n            hab_dat_collected_at\r\n            hab_id\r\n        }\r\n\r\n        categories(\r\n            page: $categories_page\r\n            per_page: $categories_per_page\r\n        ) {\r\n            cat_id\r\n            cat_name\r\n        }\r\n    }",
+										"variables": "{\"habits_page\": 1,\r\n            \"habits_per_page\": 1000,\r\n            \"categories_page\": 1,\r\n            \"categories_per_page\": 1000,\r\n            \"habits_data_page\": 1,\r\n            \"habits_data_per_page\": 1000,\r\n            \"start_date\": \"2023-10-01\",\r\n            \"end_date\": \"2023-10-10\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{gateway_url}}",
+									"host": [
+										"{{gateway_url}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1354"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"54a-FyUQpFMSZedPsIJeNHxmsq9E3Jg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Oct 2023 23:59:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"habitsByUser\": [\n            {\n                \"hab_id\": \"d5741709-b4dc-4038-ac66-b05f49355f24\",\n                \"cat_id\": \"7ad4eb3a-9178-4e88-8bdd-84e65ee93cb2\",\n                \"hab_name\": \"Habito 5\",\n                \"hab_description\": \"afas\",\n                \"hab_is_yn\": true\n            },\n            {\n                \"hab_id\": \"f3becf09-48dd-4587-b9f3-fef5383885d1\",\n                \"cat_id\": \"7ad4eb3a-9178-4e88-8bdd-84e65ee93cb2\",\n                \"hab_name\": \"Habito 6\",\n                \"hab_description\": \"afas\",\n                \"hab_is_yn\": false\n            },\n            {\n                \"hab_id\": \"3ab72162-78a2-437f-b813-824bfca2fa02\",\n                \"cat_id\": \"7ad4eb3a-9178-4e88-8bdd-84e65ee93cb2\",\n                \"hab_name\": \"Habito 5\",\n                \"hab_description\": \"afas\",\n                \"hab_is_yn\": true\n            }\n        ],\n        \"habitdataByUser\": [\n            {\n                \"hab_dat_id\": \"28822b44-9fbd-4221-996b-02fa4f43dc97\",\n                \"hab_dat_amount\": \"20.00\",\n                \"hab_dat_collected_at\": \"2023-10-01\",\n                \"hab_id\": \"d5741709-b4dc-4038-ac66-b05f49355f24\"\n            },\n            {\n                \"hab_dat_id\": \"fe5f5264-4e62-4337-bf59-c74085903bfa\",\n                \"hab_dat_amount\": \"15.00\",\n                \"hab_dat_collected_at\": \"2023-10-02\",\n                \"hab_id\": \"d5741709-b4dc-4038-ac66-b05f49355f24\"\n            },\n            {\n                \"hab_dat_id\": \"41ef0941-51f6-4ff7-b904-6401fc7222e8\",\n                \"hab_dat_amount\": \"15.00\",\n                \"hab_dat_collected_at\": \"2023-10-02\",\n                \"hab_id\": \"f3becf09-48dd-4587-b9f3-fef5383885d1\"\n            },\n            {\n                \"hab_dat_id\": \"0ca780a4-f410-421e-ba41-5305e79a6c0c\",\n                \"hab_dat_amount\": \"15.00\",\n                \"hab_dat_collected_at\": \"2023-10-03\",\n                \"hab_id\": \"f3becf09-48dd-4587-b9f3-fef5383885d1\"\n            }\n        ],\n        \"categories\": [\n            {\n                \"cat_id\": \"7ad4eb3a-9178-4e88-8bdd-84e65ee93cb2\",\n                \"cat_name\": \"12312312dfasdf\"\n            },\n            {\n                \"cat_id\": \"46dc6e24-cab6-4777-bfcc-5cc79d72563f\",\n                \"cat_name\": \"Ola de mar\"\n            }\n        ]\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Update habit",
@@ -1540,7 +1604,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query UserHabitsCategories(\r\n        $habits_page: Int!\r\n        $habits_per_page: Int!\r\n        $categories_page: Int!\r\n        $categories_per_page: Int!\r\n        $habits_data_page: Int!\r\n        $habits_data_per_page: Int!\r\n        $start_date: String!\r\n        $end_date: String!\r\n    ) {\r\n        habitsByUser(\r\n            page: $habits_page\r\n            per_page: $habits_per_page\r\n        ) {\r\n            hab_id\r\n            cat_id\r\n            hab_name\r\n            hab_description\r\n            hab_is_yn\r\n        }\r\n\r\n        habitdataByUser(\r\n            start_date: $start_date\r\n            end_date: $end_date\r\n            page: $habits_data_page\r\n            per_page: $habits_data_per_page\r\n        ) {\r\n            hab_dat_id\r\n            hab_dat_amount\r\n            hab_dat_collected_at\r\n            hab_id\r\n        }\r\n\r\n        categories(\r\n            page: $categories_page\r\n            per_page: $categories_per_page\r\n        ) {\r\n            cat_id\r\n            cat_name\r\n        }\r\n    }",
+								"query": "query UserHabitsCategories(\r\n        $habits_page: Int!\r\n        $habits_per_page: Int!\r\n        $categories_page: Int!\r\n        $categories_per_page: Int!\r\n        $habits_data_page: Int!\r\n        $habits_data_per_page: Int!\r\n        $start_date: String!\r\n        $end_date: String!\r\n    ) {\r\n        updateHabit()\r\n    }",
 								"variables": "{\"habits_page\": 1,\r\n            \"habits_per_page\": 1000,\r\n            \"categories_page\": 1,\r\n            \"categories_per_page\": 1000,\r\n            \"habits_data_page\": 1,\r\n            \"habits_data_per_page\": 1000,\r\n            \"start_date\": \"2023-10-01\",\r\n            \"end_date\": \"2023-10-10\"\r\n}"
 							}
 						},
@@ -1581,7 +1645,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation UpdateHabitData {\r\n    updateHabitdata(\r\n        datId: \"28822b44-9fbd-4221-996b-02fa4f43dc97\"\r\n        data: {\r\n            amount: 20\r\n        }\r\n    ) {\r\n        message\r\n    }\r\n}",
+								"query": "mutation UpdateHabitData {\r\n    updateHabitdata(\r\n        datId: \"28822b44-9fbd-4221-996b-02fa4f43dc97\"\r\n        data: {\r\n            amount: 20\r\n        }\r\n    ) {\r\n        message\r\n    }\r\n\r\n    \r\n}",
 								"variables": ""
 							}
 						},
@@ -1815,7 +1879,7 @@
 			"name": "Statistics",
 			"item": [
 				{
-					"name": "Get Report",
+					"name": "Get Resume Measure",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -1828,7 +1892,61 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query {\r\n    resumeMeasureHabit(id : \"74ffc5d4-d84f-4c45-809f-88987d74f5e5\") {\r\n        toDay { percentage }\r\n        week { progress }\r\n    }\r\n}",
+								"query": "query {\r\n    resumeMeasureHabit(id : \"d5741709-b4dc-4038-ac66-b05f49355f24\") {\r\n        toDay { percentage }\r\n        week { progress }\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{gateway_url}}",
+							"host": [
+								"{{gateway_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Resume Yn",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{user_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\r\n    resumeYnHabit(id : \"d5741709-b4dc-4038-ac66-b05f49355f24\") {\r\n        month\r\n        semester\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{gateway_url}}",
+							"host": [
+								"{{gateway_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Measure Streaks",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{user_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\r\n    measureStreaks(id : \"d5741709-b4dc-4038-ac66-b05f49355f24\") {\r\n        data\r\n    }\r\n}",
 								"variables": ""
 							}
 						},
@@ -1982,6 +2100,35 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{gateway_url}}/graphql?query=%7B__typename%7D",
+					"host": [
+						"{{gateway_url}}"
+					],
+					"path": [
+						"graphql"
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "%7B__typename%7D"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
