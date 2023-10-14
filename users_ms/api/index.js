@@ -34,10 +34,11 @@ class UsersAPI extends RESTDataSource {
     }; // Append jwt to user object
   }
 
-  async updateUser(user) {
+  async updateUser(user, jwt) {
     const result = await this.fetch(`users/me`, {
       method: "PATCH",
-      body: user
+      body: user,
+      headers: { "x-auth-token": jwt },
     });
 
     return result.parsedBody;

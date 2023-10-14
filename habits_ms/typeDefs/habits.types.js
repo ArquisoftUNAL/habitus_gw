@@ -36,8 +36,8 @@ const typeDefs = `#graphql
         is_yn: Boolean
         color: String
         units: String
-        goal: Float!
-        frequency_type: String!
+        goal: Float
+        frequency_type: String
         category: String
     }
 

@@ -4,7 +4,6 @@ const typeDefs = `#graphql
         name: String!
         currentStreak: Float!
         highestStreak: Float!
-        lastCollection: String!
         habit: String!
     }
 
