@@ -6,7 +6,8 @@ class StatisticsAPI extends RESTDataSource {
     baseURL = `${STATISTICS_MS_URL}api/stats/`;
 
     async getReport(id) {
-        return this.get(`report/${id}`);
+        const result = await this.get(`${id}`);
+        return result;
     }
 
 }
