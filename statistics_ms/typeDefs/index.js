@@ -1,5 +1,6 @@
 const typeDefs = `#graphql
 
+
     # Measurable habits case
     type MeasureResumeItem {
         percentage: Float!
@@ -117,10 +118,9 @@ const typeDefs = `#graphql
         days_frequency: YNDailyFrequency!
     }
 
-    union Report = MeasureReport | YNReport
-
     extend type Query {
-        habitReport(id: String!): Report!
+        habitMeasureReport(id: String!): MeasureReport!
+        habitYnReport(id: String!): YNReport!
     }
 `;
 

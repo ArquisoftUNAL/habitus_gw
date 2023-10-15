@@ -24,6 +24,7 @@
     "amqplib": "^0.10.3",
     "axios": "^1.5.1",
     "dotenv": "^16.3.1",
+    "faker": "^6.6.6",
     "graphql": "^16.8.0",
     "graphql-amqp-subscriptions": "^1.2.1",
     "graphql-type-json": "^0.3.2"
