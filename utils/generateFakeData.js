@@ -116,7 +116,8 @@ const generateFakeStatisticsMeasureData = (is_yn) => {
         report.resume = {
             month: Math.floor(Math.random() * total),
             semester: Math.floor(Math.random() * total),
-            year: Math.floor(Math.random() * total)
+            year: Math.floor(Math.random() * total),
+            total: total
         }
 
         report.history = {

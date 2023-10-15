@@ -112,18 +112,12 @@
 					"name": "Login",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "x-auth-token",
-								"value": "{{user_token}}",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation createUser($email: String!, $password: String!) {\r\n  loginUser(user: {\r\n    email: $email\r\n    password: $password\r\n  })\r\n}",
-								"variables": "{\n  \"email\": \"edgardanielgd158@gmail.com\",\n  \"password\": \"aaEE24341\"\n}"
+								"query": "mutation LoginUser {\r\n    loginUser( user: {\r\n        email: \"edgardanielgd134@gmail.com\"\r\n        password: \"aaEE22341\"\r\n    }) \r\n}",
+								"variables": ""
 							}
 						},
 						"url": {
@@ -515,7 +509,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query ExampleQuery {\r\n  habitsByUser {\r\n      hab_id\r\n      hab_name\r\n      usr_id\r\n      hab_next_closure_date\r\n      hab_is_yn\r\n      cat_id\r\n  }\r\n}\r\n",
+								"query": "query ExampleQuery {\r\n  habitsByUser {\r\n      hab_id\r\n      hab_name\r\n      hab_color\r\n      usr_id\r\n      hab_next_closure_date\r\n      hab_is_yn\r\n      cat_id\r\n      hab_is_favorite\r\n  }\r\n}\r\n",
 								"variables": ""
 							}
 						},
@@ -1508,7 +1502,7 @@
 							"mode": "graphql",
 							"graphql": {
 								"query": "query UserHabitsCategories(\r\n        $habits_page: Int!\r\n        $habits_per_page: Int!\r\n        $categories_page: Int!\r\n        $categories_per_page: Int!\r\n        $habits_data_page: Int!\r\n        $habits_data_per_page: Int!\r\n        $start_date: String!\r\n        $end_date: String!\r\n    ) {\r\n        habitsByUser(\r\n            page: $habits_page\r\n            per_page: $habits_per_page\r\n        ) {\r\n            hab_id\r\n            cat_id\r\n            hab_name\r\n            hab_description\r\n            hab_is_yn\r\n        }\r\n\r\n        habitdataByUser(\r\n            start_date: $start_date\r\n            end_date: $end_date\r\n            page: $habits_data_page\r\n            per_page: $habits_data_per_page\r\n        ) {\r\n            hab_dat_id\r\n            hab_dat_amount\r\n            hab_dat_collected_at\r\n            hab_id\r\n        }\r\n\r\n        categories(\r\n            page: $categories_page\r\n            per_page: $categories_per_page\r\n        ) {\r\n            cat_id\r\n            cat_name\r\n        }\r\n    }",
-								"variables": "{\"habits_page\": 1,\r\n            \"habits_per_page\": 1000,\r\n            \"categories_page\": 1,\r\n            \"categories_per_page\": 1000,\r\n            \"habits_data_page\": 1,\r\n            \"habits_data_per_page\": 1000,\r\n            \"start_date\": \"2023-10-01\",\r\n            \"end_date\": \"2023-10-10\"\r\n}"
+								"variables": "{\"habits_page\": 1,\r\n            \"habits_per_page\": 1000,\r\n            \"categories_page\": 1,\r\n            \"categories_per_page\": 1000,\r\n            \"habits_data_page\": 1,\r\n            \"habits_data_per_page\": 1000,\r\n            \"start_date\": \"2023-10-01\",\r\n            \"end_date\": \"2023-10-14\"\r\n}"
 							}
 						},
 						"url": {
@@ -1604,7 +1598,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query UserHabitsCategories(\r\n        $habits_page: Int!\r\n        $habits_per_page: Int!\r\n        $categories_page: Int!\r\n        $categories_per_page: Int!\r\n        $habits_data_page: Int!\r\n        $habits_data_per_page: Int!\r\n        $start_date: String!\r\n        $end_date: String!\r\n    ) {\r\n        updateHabit()\r\n    }",
+								"query": "query UpdateUserHabit(\r\n        $habits_page: Int!\r\n        $habits_per_page: Int!\r\n        $categories_page: Int!\r\n        $categories_per_page: Int!\r\n        $habits_data_page: Int!\r\n        $habits_data_per_page: Int!\r\n        $start_date: String!\r\n        $end_date: String!\r\n) {\r\n    h\r\n}",
 								"variables": "{\"habits_page\": 1,\r\n            \"habits_per_page\": 1000,\r\n            \"categories_page\": 1,\r\n            \"categories_per_page\": 1000,\r\n            \"habits_data_page\": 1,\r\n            \"habits_data_per_page\": 1000,\r\n            \"start_date\": \"2023-10-01\",\r\n            \"end_date\": \"2023-10-10\"\r\n}"
 							}
 						},
@@ -1741,7 +1735,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation MyMutation {\r\n    enqueueNotification(\r\n        data: [\r\n            {\r\n                title: \"ola\"\r\n                body: \"ola\",\r\n                init_date: \"2023-10-02T18:32\",\r\n                user_id: \"651c04f787e8295a9e32497d\",\r\n                email: \"edgardanielgd123@gmail.com\",\r\n                should_email: false\r\n            },\r\n            \r\n        ]\r\n    ) {\r\n        message\r\n    }\r\n}",
+								"query": "mutation MyMutation {\r\n    enqueueNotification(\r\n        data: [\r\n            {\r\n                title: \"nosoi\"\r\n                body: \"sisoi\",\r\n                init_date: \"2023-10-02T18:32\",\r\n                user_id: \"6518bac042209ba19817f9d1\",\r\n                should_email: false\r\n            },\r\n            \r\n        ]\r\n    ) {\r\n        message\r\n    }\r\n}",
 								"variables": ""
 							}
 						},
@@ -1879,7 +1873,7 @@
 			"name": "Statistics",
 			"item": [
 				{
-					"name": "Get Resume Measure",
+					"name": "Get measure report",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -1892,7 +1886,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query {\r\n    resumeMeasureHabit(id : \"d5741709-b4dc-4038-ac66-b05f49355f24\") {\r\n        toDay { percentage }\r\n        week { progress }\r\n    }\r\n}",
+								"query": "query GetStatisticsReport {\r\n    habitFMeasureReport(\r\n        id: \"4edba4fc-eade-43e4-b5c5-82973e1cf44f\"\r\n    ){\r\n        resume {\r\n            toDay {\r\n                percentage\r\n                progress\r\n                remaining\r\n            }\r\n            week {\r\n                percentage\r\n                progress\r\n                remaining\r\n            }\r\n            month {\r\n                percentage\r\n                progress\r\n                remaining\r\n            }\r\n            semester {\r\n                percentage\r\n                progress\r\n                remaining\r\n            }\r\n            year {\r\n                percentage\r\n                progress\r\n                remaining\r\n            }\r\n        }\r\n        history {\r\n            day {\r\n                data {\r\n                    year\r\n                    month\r\n                    day\r\n                    value\r\n                }\r\n            }\r\n            week {\r\n                data {\r\n                    year\r\n                    month\r\n                    day\r\n                    value\r\n                }\r\n            }\r\n            month {\r\n                data {\r\n                    year\r\n                    month\r\n                    day\r\n                    value\r\n                }\r\n            }\r\n            semester {\r\n                data {\r\n                    year\r\n                    month\r\n                    day\r\n                    value\r\n                }\r\n            }\r\n            year {\r\n                data {\r\n                    year\r\n                    month\r\n                    day\r\n                    value\r\n                }\r\n            }\r\n        }\r\n        streaks {\r\n            data {\r\n                start_date\r\n                end_date\r\n                quantity\r\n            }\r\n        }\r\n        days_frequency {\r\n            data {\r\n                year\r\n                month\r\n                week_day\r\n                quantity\r\n            }\r\n        }\r\n    }\r\n    \r\n}",
 								"variables": ""
 							}
 						},
@@ -1903,10 +1897,80 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get report",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{user_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query GetStatisticsReport {\r\n    habitFMeasureReport(\r\n        id: \"4edba4fc-eade-43e4-b5c5-82973e1cf44f\"\r\n    ){\r\n        resume {\r\n            toDay {\r\n                percentage\r\n                progress\r\n                remaining\r\n            }\r\n            week {\r\n                percentage\r\n                progress\r\n                remaining\r\n            }\r\n            month {\r\n                percentage\r\n                progress\r\n                remaining\r\n            }\r\n            semester {\r\n                percentage\r\n                progress\r\n                remaining\r\n            }\r\n            year {\r\n                percentage\r\n                progress\r\n                remaining\r\n            }\r\n        }\r\n        history {\r\n            day {\r\n                data {\r\n                    year\r\n                    month\r\n                    day\r\n                    value\r\n                }\r\n            }\r\n            week {\r\n                data {\r\n                    year\r\n                    month\r\n                    day\r\n                    value\r\n                }\r\n            }\r\n            month {\r\n                data {\r\n                    year\r\n                    month\r\n                    day\r\n                    value\r\n                }\r\n            }\r\n            semester {\r\n                data {\r\n                    year\r\n                    month\r\n                    day\r\n                    value\r\n                }\r\n            }\r\n            year {\r\n                data {\r\n                    year\r\n                    month\r\n                    day\r\n                    value\r\n                }\r\n            }\r\n        }\r\n        streaks {\r\n            data {\r\n                start_date\r\n                end_date\r\n                quantity\r\n            }\r\n        }\r\n        days_frequency {\r\n            data {\r\n                year\r\n                month\r\n                week_day\r\n                quantity\r\n            }\r\n        }\r\n    }\r\n    \r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{gateway_url}}",
+									"host": [
+										"{{gateway_url}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1049"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"419-0+ZJ1UJ/6vQbREOKMI1gt/fvm44\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Oct 2023 18:04:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"habitFMeasureReport\": {\n            \"resume\": {\n                \"toDay\": {\n                    \"percentage\": 0.0026581237970320086,\n                    \"progress\": 0.15398424588193313,\n                    \"remaining\": 57.77569008074947\n                },\n                \"week\": {\n                    \"percentage\": 0.9203582493270913,\n                    \"progress\": 43.69484478840546,\n                    \"remaining\": 3.78106453315754\n                },\n                \"month\": {\n                    \"percentage\": 0.7527703730668611,\n                    \"progress\": 54.68095561373806,\n                    \"remaining\": 17.958666733462486\n                },\n                \"semester\": {\n                    \"percentage\": 0.14047309183897116,\n                    \"progress\": 4.442620417501405,\n                    \"remaining\": 27.183510675235727\n                },\n                \"year\": {\n                    \"percentage\": 0.22377596771616903,\n                    \"progress\": 17.2870057078106,\n                    \"remaining\": 59.964389445296\n                }\n            },\n            \"history\": {\n                \"day\": {\n                    \"data\": []\n                },\n                \"week\": {\n                    \"data\": []\n                },\n                \"month\": {\n                    \"data\": []\n                },\n                \"semester\": {\n                    \"data\": []\n                },\n                \"year\": {\n                    \"data\": []\n                }\n            },\n            \"streaks\": {\n                \"data\": [\n                    {\n                        \"start_date\": \"2020-01-01\",\n                        \"end_date\": \"2020-01-31\",\n                        \"quantity\": 31\n                    },\n                    {\n                        \"start_date\": \"2020-02-01\",\n                        \"end_date\": \"2020-02-29\",\n                        \"quantity\": 29\n                    }\n                ]\n            },\n            \"days_frequency\": {\n                \"data\": [\n                    {\n                        \"year\": 2020,\n                        \"month\": 1,\n                        \"week_day\": 1,\n                        \"quantity\": 4\n                    },\n                    {\n                        \"year\": 2020,\n                        \"month\": 2,\n                        \"week_day\": 2,\n                        \"quantity\": 4\n                    },\n                    {\n                        \"year\": 2020,\n                        \"month\": 3,\n                        \"week_day\": 4,\n                        \"quantity\": 4\n                    },\n                    {\n                        \"year\": 2020,\n                        \"month\": 5,\n                        \"week_day\": 1,\n                        \"quantity\": 4\n                    }\n                ]\n            }\n        }\n    }\n}"
+						}
+					]
 				},
 				{
-					"name": "Get Resume Yn",
+					"name": "Get yn report",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -1919,7 +1983,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query {\r\n    resumeYnHabit(id : \"d5741709-b4dc-4038-ac66-b05f49355f24\") {\r\n        month\r\n        semester\r\n    }\r\n}",
+								"query": "query GetStatisticsReport {\r\n    habitFYnReport(\r\n        id: \"4edba4fc-eade-43e4-b5c5-82973e1cf44f\"\r\n    ){\r\n        resume {\r\n            month\r\n            semester\r\n            year\r\n            total\r\n        }\r\n        history {\r\n            week {\r\n                data {\r\n                    year\r\n                    week\r\n                    month\r\n                    semester\r\n                    count\r\n                }\r\n            }\r\n            month {\r\n                data {\r\n                    year\r\n                    week\r\n                    month\r\n                    semester\r\n                    count\r\n                }\r\n            }\r\n            semester {\r\n                data {\r\n                    year\r\n                    week\r\n                    month\r\n                    semester\r\n                    count\r\n                }\r\n            }\r\n            year {\r\n                data {\r\n                    year\r\n                    week\r\n                    month\r\n                    semester\r\n                    count\r\n                }\r\n            }\r\n        }\r\n        streaks {\r\n            data {\r\n                start_date\r\n                end_date\r\n                quantity\r\n            }\r\n        }\r\n        days_frequency {\r\n            data {\r\n                year\r\n                month\r\n                week_day\r\n                quantity\r\n            }\r\n        }\r\n    }\r\n    \r\n}",
 								"variables": ""
 							}
 						},
@@ -1930,34 +1994,77 @@
 							]
 						}
 					},
-					"response": []
-				},
-				{
-					"name": "Get Measure Streaks",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-auth-token",
-								"value": "{{user_token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query {\r\n    measureStreaks(id : \"d5741709-b4dc-4038-ac66-b05f49355f24\") {\r\n        data\r\n    }\r\n}",
-								"variables": ""
-							}
-						},
-						"url": {
-							"raw": "{{gateway_url}}",
-							"host": [
-								"{{gateway_url}}"
-							]
+					"response": [
+						{
+							"name": "Get measure report Copy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{user_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query GetStatisticsReport {\r\n    habitFYnReport(\r\n        id: \"4edba4fc-eade-43e4-b5c5-82973e1cf44f\"\r\n    ){\r\n        resume {\r\n            month\r\n            semester\r\n            year\r\n            total\r\n        }\r\n        history {\r\n            week {\r\n                data {\r\n                    year\r\n                    week\r\n                    month\r\n                    semester\r\n                    count\r\n                }\r\n            }\r\n            month {\r\n                data {\r\n                    year\r\n                    week\r\n                    month\r\n                    semester\r\n                    count\r\n                }\r\n            }\r\n            semester {\r\n                data {\r\n                    year\r\n                    week\r\n                    month\r\n                    semester\r\n                    count\r\n                }\r\n            }\r\n            year {\r\n                data {\r\n                    year\r\n                    week\r\n                    month\r\n                    semester\r\n                    count\r\n                }\r\n            }\r\n        }\r\n        streaks {\r\n            data {\r\n                start_date\r\n                end_date\r\n                quantity\r\n            }\r\n        }\r\n        days_frequency {\r\n            data {\r\n                year\r\n                month\r\n                week_day\r\n                quantity\r\n            }\r\n        }\r\n    }\r\n    \r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{gateway_url}}",
+									"host": [
+										"{{gateway_url}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-store"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1855"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"73f-5HxZV2BuaEG7UfwWh6AruxgfylM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Oct 2023 18:11:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": [\n        {\n            \"message\": \"Cannot return null for non-nullable field YNResume.total.\",\n            \"locations\": [\n                {\n                    \"line\": 9,\n                    \"column\": 13\n                }\n            ],\n            \"path\": [\n                \"habitFYnReport\",\n                \"resume\",\n                \"total\"\n            ],\n            \"extensions\": {\n                \"code\": \"INTERNAL_SERVER_ERROR\",\n                \"stacktrace\": [\n                    \"Error: Cannot return null for non-nullable field YNResume.total.\",\n                    \"    at completeValue (D:\\\\OneDriveData\\\\Documents-A\\\\UNAL20232\\\\Arquisoft\\\\Api-Gateway-Javascript\\\\node_modules\\\\graphql\\\\execution\\\\execute.js:605:13)\",\n                    \"    at executeField (D:\\\\OneDriveData\\\\Documents-A\\\\UNAL20232\\\\Arquisoft\\\\Api-Gateway-Javascript\\\\node_modules\\\\graphql\\\\execution\\\\execute.js:500:19)\",\n                    \"    at executeFields (D:\\\\OneDriveData\\\\Documents-A\\\\UNAL20232\\\\Arquisoft\\\\Api-Gateway-Javascript\\\\node_modules\\\\graphql\\\\execution\\\\execute.js:414:22)\",\n                    \"    at completeObjectValue (D:\\\\OneDriveData\\\\Documents-A\\\\UNAL20232\\\\Arquisoft\\\\Api-Gateway-Javascript\\\\node_modules\\\\graphql\\\\execution\\\\execute.js:925:10)\",\n                    \"    at completeValue (D:\\\\OneDriveData\\\\Documents-A\\\\UNAL20232\\\\Arquisoft\\\\Api-Gateway-Javascript\\\\node_modules\\\\graphql\\\\execution\\\\execute.js:646:12)\",\n                    \"    at completeValue (D:\\\\OneDriveData\\\\Documents-A\\\\UNAL20232\\\\Arquisoft\\\\Api-Gateway-Javascript\\\\node_modules\\\\graphql\\\\execution\\\\execute.js:595:23)\",\n                    \"    at executeField (D:\\\\OneDriveData\\\\Documents-A\\\\UNAL20232\\\\Arquisoft\\\\Api-Gateway-Javascript\\\\node_modules\\\\graphql\\\\execution\\\\execute.js:500:19)\",\n                    \"    at executeFields (D:\\\\OneDriveData\\\\Documents-A\\\\UNAL20232\\\\Arquisoft\\\\Api-Gateway-Javascript\\\\node_modules\\\\graphql\\\\execution\\\\execute.js:414:22)\",\n                    \"    at completeObjectValue (D:\\\\OneDriveData\\\\Documents-A\\\\UNAL20232\\\\Arquisoft\\\\Api-Gateway-Javascript\\\\node_modules\\\\graphql\\\\execution\\\\execute.js:925:10)\",\n                    \"    at completeValue (D:\\\\OneDriveData\\\\Documents-A\\\\UNAL20232\\\\Arquisoft\\\\Api-Gateway-Javascript\\\\node_modules\\\\graphql\\\\execution\\\\execute.js:646:12)\"\n                ]\n            }\n        }\n    ],\n    \"data\": null\n}"
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
@@ -2005,7 +2112,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query GetHabitsAchievements {\r\n    achievementsByHabit(\r\n        id: \"1adf59e1-6c26-493e-98d7-5d22b39def68\"\r\n    ) {\r\n        data {\r\n            name\r\n            id\r\n            currentStreak\r\n        }\r\n    }\r\n}",
+								"query": "query GetHabitsAchievements {\r\n    achievementsByHabit(\r\n        id: \"f563218a-1cab-49e4-abed-3efe64e56221\"\r\n    ) {\r\n        data {\r\n            name\r\n            id\r\n            currentStreak\r\n        }\r\n    }\r\n}",
 								"variables": ""
 							}
 						},
@@ -2032,7 +2139,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation CreateMilestone {\r\n    addMilestone (\r\n        milestone : {\r\n            streak : 12\r\n            date: \"2023-12-02\"\r\n            achId: \"1119194b-7abd-40bd-a29b-2dac6795b871\"\r\n        }\r\n    ) {\r\n        message\r\n        status\r\n    }\r\n}",
+								"query": "mutation CreateMilestone {\r\n    addMilestone (\r\n        milestone : {\r\n            streak : 12\r\n            date: \"2023-12-16\"\r\n            achId: \"a29ba009-fa35-4dce-bebb-28ba3231dcb3\"\r\n        }\r\n    ) {\r\n        message\r\n        status\r\n    }\r\n}",
 								"variables": ""
 							}
 						},
@@ -2059,7 +2166,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query GetAchievementMilestones {\r\n    milestonesByAchievement( id: \"1119194b-7abd-40bd-a29b-2dac6795b871\"\r\n    ) {\r\n        message\r\n        data {\r\n            id\r\n            streak\r\n            date\r\n            achievement\r\n        }\r\n    }\r\n}",
+								"query": "query GetAchievementMilestones {\r\n    milestonesByAchievement( id: \"6f3982f1-92d9-48cb-be2d-5c82a5380937\"\r\n    ) {\r\n        message\r\n        data {\r\n            id\r\n            streak\r\n            date\r\n        }\r\n    }\r\n}",
 								"variables": ""
 							}
 						},
@@ -2113,12 +2220,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{gateway_url}}/graphql?query=%7B__typename%7D",
+					"raw": "{{gateway_url}}/graphqll?query=%7B__typename%7D",
 					"host": [
 						"{{gateway_url}}"
 					],
 					"path": [
-						"graphql"
+						"graphqll"
 					],
 					"query": [
 						{

@@ -119,6 +119,8 @@ const typeDefs = `#graphql
     }
 
     extend type Query {
+        habitFMeasureReport(id: String!): MeasureReport!
+        habitFYnReport(id: String!): YNReport!
         habitMeasureReport(id: String!): MeasureReport!
         habitYnReport(id: String!): YNReport!
     }
