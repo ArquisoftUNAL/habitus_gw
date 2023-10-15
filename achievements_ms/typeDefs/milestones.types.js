@@ -3,7 +3,7 @@ const typeDefs = `#graphql
         id: String!
         streak: Int!
         date: String!
-        achievement: String!
+        achievement: Achievement!
     }
 
     type MilestoneList {

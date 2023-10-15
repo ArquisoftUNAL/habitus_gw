@@ -34,6 +34,7 @@ const { PORT } = require('./config');
     const server = new ApolloServer({
         typeDefs,
         resolvers,
+        onHealthCheck: () => new Promise((resolve) => { console.log('hc called'); resolve() })
     });
 
     const { url } = await startStandaloneServer(server, {

@@ -26,9 +26,11 @@ const resolvers = {
                 }
 
                 try {
+                    const userData = await dataSources.usersAPI.getUserById(notification.user_id);
+
                     await dataSources.notificationsQueue.publish(NOTIFICATIONS_QUEUE, {
                         ...notification,
-                        email: "edgonzalezdi@unal.edu.co"
+                        email: userData.email
                     });
                 } catch (err) {
                     console.log(err);

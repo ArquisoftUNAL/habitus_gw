@@ -20,7 +20,7 @@ const typeDefs = `#graphql
         body: String!
         init_date: String!
         should_email: Boolean!
-        email: String!
+        email: String
         user_id: String!
     }
 

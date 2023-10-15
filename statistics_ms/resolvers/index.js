@@ -1,14 +1,17 @@
-const measureResolver = require('./measure.resolver');
-const reportResolver = require('./report.resolver');
-const ynResolver = require('./yn.resolver');
+const checkHabitOwnership = require('./../../utils/checkHabitOwnership');
+const { GraphQLError } = require('graphql');
 
 const response = {
     Query: {
-        ...measureResolver.Query,
-        ...reportResolver.Query,
-        ...ynResolver.Query,
-        freqWeekdayHabit: async (_, { id }, { dataSources }) => {
-            return dataSources.statisticsAPI.getHabitFreqWeekDay(id);
+        habitReport: async (_, { id }, { dataSources, userId, isAdmin }) => {
+            // Check first if user is allowed to access this habit
+            const allowed = await checkHabitOwnership(dataSources.habitsAPI, userId, isAdmin, id);
+
+            if (!allowed) {
+                throw new GraphQLError("You are not allowed to access this habit.");
+            }
+
+            return dataSources.statisticsAPI.getReport(id);
         }
     },
     Mutation: {
