@@ -18,7 +18,7 @@ const resolvers = {
             return dataSources.habitsAPI.updateCategory(userId, isAdmin, id, category);
         },
 
-        deleteHabit: async (_, { id }, { dataSources, userId, isAdmin, }) => {
+        deleteCategory: async (_, { id }, { dataSources, userId, isAdmin, }) => {
             return dataSources.habitsAPI.deleteCategory(userId, isAdmin, id);
         }
     }
