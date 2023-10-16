@@ -21,7 +21,8 @@ const resolvers = {
             const result = await dataSources.habitsAPI.addHabitdata(userId, isAdmin, data);
 
             // Enqueue habit data update
-            dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
+            if (dataSources.habitsQueue)
+                dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
 
             return result;
         },
@@ -30,7 +31,8 @@ const resolvers = {
             // Enqueue habit data update
             const result = await dataSources.habitsAPI.updateHabitdata(userId, isAdmin, datId, data);
 
-            dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
+            if (dataSources.habitsQueue)
+                dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
 
             return result;
         },
@@ -39,7 +41,8 @@ const resolvers = {
             const result = await dataSources.habitsAPI.deleteHabitdata(userId, isAdmin, datId);
 
             // Enqueue habit data update
-            dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
+            if (dataSources.habitsQueue)
+                dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
 
             return result;
         }

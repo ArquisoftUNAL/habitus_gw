@@ -52,19 +52,96 @@ const generateFakeStatisticsMeasureData = (is_yn) => {
 
         report.history = {
             day: {
-                data: []
+                data: [
+                    {
+                        year: 2023,
+                        month: null,
+                        day: 127,
+                        value: 120,
+                        semester: null
+                    },
+                    {
+                        year: 2023,
+                        month: null,
+                        day: 325,
+                        value: 120,
+                        semester: null
+                    }
+                ]
             },
             week: {
-                data: []
+                data: [
+                    {
+                        year: 2023,
+                        month: null,
+                        week: 12,
+                        day: null,
+                        value: 120,
+                        semester: null
+                    },
+                    {
+                        year: 2023,
+                        month: null,
+                        week: 13,
+                        day: null,
+                        value: 24,
+                        semester: null
+                    }
+                ]
             },
             month: {
-                data: []
+                data: [
+                    {
+                        year: 2023,
+                        month: 2,
+                        day: null,
+                        value: 12,
+                        semester: null
+                    },
+                    {
+                        year: 2023,
+                        month: 3,
+                        day: null,
+                        value: 120,
+                        semester: null
+                    }
+                ]
             },
             semester: {
-                data: []
+                data: [
+                    {
+                        year: 2023,
+                        month: null,
+                        day: null,
+                        value: 120,
+                        semester: 1
+                    },
+                    {
+                        year: 2023,
+                        month: null,
+                        day: 325,
+                        value: 120,
+                        semester: 2
+                    }
+                ]
             },
             year: {
-                data: []
+                data: [
+                    {
+                        year: 2023,
+                        month: null,
+                        day: null,
+                        value: 120,
+                        semester: null
+                    },
+                    {
+                        year: 2024,
+                        month: null,
+                        day: null,
+                        value: 120,
+                        semester: null
+                    }
+                ]
             }
         }
 

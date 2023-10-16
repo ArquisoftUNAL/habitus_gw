@@ -7,6 +7,7 @@ class StatisticsAPI extends RESTDataSource {
 
     async getReport(id) {
         const result = await this.get(`${id}`);
+        console.log(result);
         return result;
     }
 
