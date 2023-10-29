@@ -22,7 +22,10 @@ const resolvers = {
 
             // Enqueue habit data update
             if (dataSources.habitsQueue)
-                dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
+                dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, {
+                    ...result.data,
+                    type: 'create'
+                });
 
             return result;
         },
@@ -32,7 +35,10 @@ const resolvers = {
             const result = await dataSources.habitsAPI.updateHabitdata(userId, isAdmin, datId, data);
 
             if (dataSources.habitsQueue)
-                dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
+                dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, {
+                    ...result.data,
+                    type: 'update'
+                });
 
             return result;
         },
@@ -42,7 +48,10 @@ const resolvers = {
 
             // Enqueue habit data update
             if (dataSources.habitsQueue)
-                dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, result.data);
+                dataSources.habitsQueue.publish(HABITS_UPDATE_QUEUE, {
+                    ...result.data,
+                    type: 'delete'
+                });
 
             return result;
         }
