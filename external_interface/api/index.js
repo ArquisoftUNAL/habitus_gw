@@ -5,7 +5,7 @@ const { EXTERNAL_INTERFACE_URL } = require("./../../config");
 class ExternalInterfaceAPI {
 
     constructor() {
-        this.client = null;
+        console.log(EXTERNAL_INTERFACE_URL)
         soap.createClient(
             `${EXTERNAL_INTERFACE_URL}/wsdl?wsdl`,
             (err, client) => {
@@ -17,19 +17,33 @@ class ExternalInterfaceAPI {
                 this.client = client;
             }
         )
+
     }
 
     async getData() {
-        if (this.client) {
-            this.client.CategoriesQuery(args, (err, res) => {
-                if (err) {
-                    console.error(err);
-                    return;
-                }
 
-                return res;
-            })
-        }
+        return new Promise((resolve, reject) => {
+            if (this.client) {
+                this.client.CategoriesQuery({}, (err, res) => {
+                    if (err) {
+                        console.error(err);
+                        resolve({
+                            categories: []
+                        });
+                        return;
+                    }
+
+                    resolve(res);
+                })
+            } else {
+                resolve({
+                    categories: []
+                });
+            }
+        })
+
+
+
     }
 }
 

@@ -38,6 +38,8 @@ const { PORT } = require('./config');
         serverHealthCheckPath: '/healthcheck'
     });
 
+    const externalInterfaceAPI = new ExternalInterfaceAPI();
+
     const { url } = await startStandaloneServer(server, {
         listen: { port: PORT },
         context: async ({ req, res }) => {
@@ -50,7 +52,7 @@ const { PORT } = require('./config');
                 statisticsAPI: new StatisticsAPI({ cache }),
                 achievementsAPI: new AchievementsAPI({ cache }),
                 notificationsAPI: new NotificationsAPI({ cache }),
-                externalInterfaceAPI: new ExternalInterfaceAPI(),
+                externalInterfaceAPI: externalInterfaceAPI,
                 notificationsQueue: notificationsQueue,
                 habitsQueue: habitsQueue
             }

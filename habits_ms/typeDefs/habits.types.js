@@ -13,6 +13,7 @@ const typeDefs = `#graphql
         hab_units: String!
         hab_goal: Float!
         hab_freq_type: String!
+        hab_location: String
         cat_id: String!
         data: [HabitData]
     }
@@ -27,6 +28,7 @@ const typeDefs = `#graphql
         goal: Float!
         frequency_type: String!
         category: String!
+        location: String
     }
 
     input HabitUpdate {
@@ -39,6 +41,7 @@ const typeDefs = `#graphql
         goal: Float
         frequency_type: String
         category: String
+        location: String
     }
 
     extend type Query {
