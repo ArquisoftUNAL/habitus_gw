@@ -42,8 +42,30 @@ class ExternalInterfaceAPI {
             }
         })
 
+    }
 
+    async getCentersData() {
+        return new Promise((resolve, reject) => {
+            if (this.client) {
+                this.client.MedicalCenters({}, (err, res) => {
 
+                    if (err) {
+                        console.error(err);
+                        resolve({
+
+                        });
+                        return;
+                    }
+
+                    resolve(res);
+                })
+            } else {
+
+                resolve({
+                    centers: []
+                });
+            }
+        })
     }
 }
 

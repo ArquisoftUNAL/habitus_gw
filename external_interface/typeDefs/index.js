@@ -8,7 +8,18 @@ module.exports = `#graphql
         categories: [Category!]!
     }
 
+    type MedicalCenter {
+        id: String!
+        name: String!
+        location: String!
+    }
+
+    type SOAPMedicalCenterResponse {
+        centers : [MedicalCenter!]!
+    }
+
     extend type Query {
         getExternalCategories: SOAPCategoriesResponse!
+        getMedicalCenters: SOAPMedicalCenterResponse
     }
 `;

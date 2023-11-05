@@ -1,7 +1,7 @@
 module.exports = {
   Query: {
-    getExternalCategories: async (_, __, { dataSources }) => {
-      return dataSources.externalInterfaceAPI.getData();
+    getMedicalCenters: async (_, __, { dataSources }) => {
+      return dataSources.externalInterfaceAPI.getCentersData();
     }
   },
 
