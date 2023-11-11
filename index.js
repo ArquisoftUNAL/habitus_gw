@@ -1,4 +1,5 @@
 const { ApolloServer } = require('@apollo/server');
+const { GraphQLError } = require('graphql');
 const { startStandaloneServer } = require('@apollo/server/standalone');
 const { typeDefs, resolvers } = require('./schema');
 const { amqpNotifications, amqpHabits } = require('./ampq');
@@ -8,7 +9,8 @@ const StatisticsAPI = require('./statistics_ms/api');
 const AchievementsAPI = require("./achievements_ms/api");
 const NotificationsAPI = require('./notifications_ms/api');
 const ExternalInterfaceAPI = require('./external_interface/api');
-const { PORT } = require('./config');
+const { PORT, cache: serverCache } = require('./config');
+const validatePermissions = require('./utils/matchPermisssion');
 
 (async () => {
     // Try to connect to RabbitMQ
@@ -35,7 +37,38 @@ const { PORT } = require('./config');
     const server = new ApolloServer({
         typeDefs,
         resolvers,
-        serverHealthCheckPath: '/healthcheck'
+        serverHealthCheckPath: '/healthcheck',
+        plugins: [
+            {
+                async requestDidStart(contextRequest) {
+                    const { contextValue: context } = contextRequest;
+                    const { role, permissions } = context;
+                    return {
+                        async executionDidStart() {
+                            return {
+                                willResolveField({ info }) {
+                                    const fieldName = info.fieldName;
+
+                                    const authorized = validatePermissions(permissions, role, fieldName);
+
+                                    // Block unauthorized users from accessing operations
+                                    if (!authorized) {
+                                        throw new GraphQLError(
+                                            "You are not allowed to access this operation.",
+                                            {
+                                                extensions: {
+                                                    code: "UNAUTHORIZED"
+                                                }
+                                            }
+                                        );
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+        ]
     });
 
     const externalInterfaceAPI = new ExternalInterfaceAPI();
@@ -71,11 +104,29 @@ const { PORT } = require('./config');
                 } catch (e) {
                     console.log("Error authenticating user");
                     console.log(e);
+
+                    // If token is invalid, delete it from cache
+                    userId = null;
+                    isAdmin = false;
                 }
             }
 
-            return { dataSources, userId, isAdmin, token };
-        }
+            // Authorize user against users microservice and it's authorization modul
+            let permissions = serverCache.get("permissions") || null;
+
+            if (!permissions) {
+                // Query permissions against database
+                permissions = await dataSources.usersAPI.getAllPermissions();
+
+                // Save permissions in cache
+                serverCache.set("permissions", permissions);
+            }
+
+            const role = userId ? (isAdmin ? "admin" : "user") : "guest";
+
+            return { dataSources, userId, isAdmin, token, permissions, role };
+        },
+
     });
 
     console.log(`🚀 Server ready at ${url}`);

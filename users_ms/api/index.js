@@ -5,6 +5,12 @@ const { USERS_MS_URL } = require("./../../config");
 class UsersAPI extends RESTDataSource {
   baseURL = USERS_MS_URL;
 
+  async getAllPermissions() {
+    const response = await this.get(`permissions/all`);
+
+    return response;
+  }
+
   async getCurrentUser(jwt) {
     const response = await this.get(`users/me`, {
       headers: { "x-auth-token": jwt },

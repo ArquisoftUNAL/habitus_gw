@@ -1,4 +1,5 @@
 const dotenv = require('dotenv');
+const NodeCache = require('node-cache');
 dotenv.config();
 
 const CONFIGURATION = {
@@ -25,7 +26,11 @@ const CONFIGURATION = {
 
     EXTERNAL_INTERFACE_URL: process.env.EXTERNAL_INTERFACE_URL,
 
-    PORT: process.env.PORT || 4000
+    PORT: process.env.PORT || 4000,
+
+    cache: new NodeCache({
+        stdTTL: 60 * 20, // 20 minutes
+    }),
 };
 
 module.exports = CONFIGURATION;
