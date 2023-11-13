@@ -1,7 +1,9 @@
+const validatePermissions = require('./../../utils/matchPermisssion');
+
 module.exports = {
   Query: {
-    getMedicalCenters: async (_, __, { dataSources }) => {
-
+    getMedicalCenters: async (_, __, { dataSources, permissions, role }) => {
+      validatePermissions(permissions, role, "getMedicalCenters");
       return dataSources.externalInterfaceAPI.getCentersData();
     }
   },

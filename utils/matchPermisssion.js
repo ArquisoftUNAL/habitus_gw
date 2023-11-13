@@ -1,20 +1,35 @@
+const { GraphQLError } = require("graphql");
+
 const validatePermissions = (permissions, role, operationName) => {
 
+    const throwError = () => {
+        throw new GraphQLError(
+            "You are not allowed to access this operation.",
+            {
+                extensions: {
+                    code: "UNAUTHORIZED"
+                }
+            }
+        );
+    }
+
     if (!permissions) {
-        return false;
+        throwError();
     }
 
     const rolePermissions = permissions.find(p => p.role === role);
 
     if (!rolePermissions) {
-        return false;
+        throwError();
     }
 
     const operationPermissions = rolePermissions.operations.find(
         p => (p === operationName || p == "all")
     );
 
-    return operationPermissions;
+    if (!operationPermissions) {
+        throwError();
+    }
 }
 
 module.exports = validatePermissions;

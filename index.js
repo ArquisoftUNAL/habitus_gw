@@ -38,37 +38,6 @@ const validatePermissions = require('./utils/matchPermisssion');
         typeDefs,
         resolvers,
         serverHealthCheckPath: '/healthcheck',
-        plugins: [
-            {
-                async requestDidStart(contextRequest) {
-                    const { contextValue: context } = contextRequest;
-                    const { role, permissions } = context;
-                    return {
-                        async executionDidStart() {
-                            return {
-                                willResolveField({ info }) {
-                                    const fieldName = info.fieldName;
-
-                                    const authorized = validatePermissions(permissions, role, fieldName);
-
-                                    // Block unauthorized users from accessing operations
-                                    if (!authorized) {
-                                        throw new GraphQLError(
-                                            "You are not allowed to access this operation.",
-                                            {
-                                                extensions: {
-                                                    code: "UNAUTHORIZED"
-                                                }
-                                            }
-                                        );
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-        ]
     });
 
     const externalInterfaceAPI = new ExternalInterfaceAPI();
